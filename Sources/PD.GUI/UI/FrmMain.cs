@@ -55,5 +55,16 @@ namespace process_demonizator.UI
         {
 
         }
+
+        private void smenuSettions_Click(object sender, EventArgs e)
+        {
+            var frmSettings = new FrmSettings();
+            frmSettings.ShowDialog();
+        }
+
+        private void smenuExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

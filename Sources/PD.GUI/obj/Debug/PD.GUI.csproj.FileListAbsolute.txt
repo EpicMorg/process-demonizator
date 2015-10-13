@@ -7,3 +7,4 @@ D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demoniza
 D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\PD.GUI.csproj.GenerateResource.Cache
 D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.exe
 D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.pdb
+D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.UI.FrmSettings.resources
