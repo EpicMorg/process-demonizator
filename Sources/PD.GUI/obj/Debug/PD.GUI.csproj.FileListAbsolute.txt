@@ -8,3 +8,8 @@ D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\PD.GUI.csproj.Ge
 D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.exe
 D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.pdb
 D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.UI.FrmSettings.resources
+D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.UI.FrmStartHm.resources
+D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\bin\Debug\IPAddressControlLib.dll
+D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\bin\Debug\IPAddressControlLib.pdb
+D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.UI.FrmAdd.resources
+D:\WORK\Git\Github\process-demonizator\Sources\PD.GUI\obj\Debug\process_demonizator.UI.FrmAbout.resources

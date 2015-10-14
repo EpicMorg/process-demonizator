@@ -10,9 +10,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{F66B8E
 		assets\gksu_root_terminal.ico = assets\gksu_root_terminal.ico
 		assets\gksu_root_terminal.png = assets\gksu_root_terminal.png
 		assets\gksu_root_terminal_16.ico = assets\gksu_root_terminal_16.ico
+		C:\Users\Anatoly\Desktop\LICENSE = C:\Users\Anatoly\Desktop\LICENSE
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPAddressControlLib", "assets\IPAddressControlLib\IPAddressControlLib.csproj", "{A5ED2B33-5644-47C4-BC30-A4840F67FF87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PD.TUI", "PD.TUI\PD.TUI.csproj", "{21A89E7A-0C1D-4E9E-A13D-CB92864EE8A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +31,10 @@ Global
 		{A5ED2B33-5644-47C4-BC30-A4840F67FF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5ED2B33-5644-47C4-BC30-A4840F67FF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5ED2B33-5644-47C4-BC30-A4840F67FF87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21A89E7A-0C1D-4E9E-A13D-CB92864EE8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A89E7A-0C1D-4E9E-A13D-CB92864EE8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A89E7A-0C1D-4E9E-A13D-CB92864EE8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A89E7A-0C1D-4E9E-A13D-CB92864EE8A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

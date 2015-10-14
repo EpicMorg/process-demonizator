@@ -28,7 +28,16 @@ namespace process_demonizator.UI
                 return attributes.Length == 0 ? "" : ((AssemblyProductAttribute)attributes[0]).Product;
             }
         }
-              
+
+        public string AssemblyCompany
+        {
+            get
+            {
+                var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+                return attributes.Length == 0 ? "" : ((AssemblyCompanyAttribute)attributes[0]).Company;
+            }
+        }
+
 
         private FormWindowState _oldFormState;
         void FormForTray_Resize(object sender, EventArgs e)
@@ -65,6 +74,48 @@ namespace process_demonizator.UI
         private void smenuExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void smenuStartMonitorServer_Click(object sender, EventArgs e)
+        {
+            var frmHm = new FrmStartHm();
+            frmHm.ShowDialog();
+        }
+
+        private void smenuAddNewItem_Click(object sender, EventArgs e)
+        {
+            var frmAdd = new FrmAdd();
+            frmAdd.ShowDialog();
+        }
+
+        private void smenuAbout_Click(object sender, EventArgs e)
+        {
+            var frmAbout = new FrmAbout();
+            frmAbout.ShowDialog();
+        }
+
+        private void smenuLicense_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"The MIT License (MIT)" + Environment.NewLine + Environment.NewLine + @"Copyright " + (char)0169 + @" " + DateTime.Now.Year + @" " + AssemblyCompany
+          + Environment.NewLine
+          + Environment.NewLine + @"Permission is hereby granted, free of charge, to any person obtaining a copy"
+          + Environment.NewLine + @"of this software and associated documentation files(the ''Software''), to deal"
+          + Environment.NewLine + @"in the Software without restriction, including without limitation the rights"
+          + Environment.NewLine + @"to use, copy, modify, merge, publish, distribute, sublicense, and / or sell"
+          + Environment.NewLine + @"copies of the Software, and to permit persons to whom the Software is"
+          + Environment.NewLine + @"furnished to do so, subject to the following conditions: "
+          + Environment.NewLine
+          + Environment.NewLine + @"The above copyright notice and this permission notice shall be included in all"
+          + Environment.NewLine + @"copies or substantial portions of the Software."
+          + Environment.NewLine
+          + Environment.NewLine + @"THE SOFTWARE IS PROVIDED ''AS IS'', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR"
+          + Environment.NewLine + @"IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,"
+          + Environment.NewLine + @"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE"
+          + Environment.NewLine + @"AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+          + Environment.NewLine + @"LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,"
+          + Environment.NewLine + @"OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE"
+          + Environment.NewLine + @"SOFTWARE.", @"LICENSE", MessageBoxButtons.OK, MessageBoxIcon.Information
+          );
         }
     }
 }

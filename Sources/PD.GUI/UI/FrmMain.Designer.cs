@@ -32,31 +32,34 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.smenuAddNewItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.smenuStartMonitorServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.smenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.smenuSettions = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.smenuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.smenuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.smenuStartMonitorServer = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.smenuAddNewItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabServers = new System.Windows.Forms.TabPage();
-            this.tabLogs = new System.Windows.Forms.TabPage();
+            this.tabItems = new System.Windows.Forms.TabPage();
             this.dgvProcessList = new System.Windows.Forms.DataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRestarts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabLogs = new System.Windows.Forms.TabPage();
             this.txtLogs = new System.Windows.Forms.TextBox();
+            this.smenuLicense = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
-            this.tabServers.SuspendLayout();
-            this.tabLogs.SuspendLayout();
+            this.tabItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).BeginInit();
+            this.tabLogs.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -84,6 +87,30 @@
             this.menuFile.Size = new System.Drawing.Size(37, 20);
             this.menuFile.Text = "File";
             // 
+            // smenuAddNewItem
+            // 
+            this.smenuAddNewItem.Name = "smenuAddNewItem";
+            this.smenuAddNewItem.Size = new System.Drawing.Size(178, 22);
+            this.smenuAddNewItem.Text = "Add new item";
+            this.smenuAddNewItem.Click += new System.EventHandler(this.smenuAddNewItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
+            // 
+            // smenuStartMonitorServer
+            // 
+            this.smenuStartMonitorServer.Name = "smenuStartMonitorServer";
+            this.smenuStartMonitorServer.Size = new System.Drawing.Size(178, 22);
+            this.smenuStartMonitorServer.Text = "Start monitor server";
+            this.smenuStartMonitorServer.Click += new System.EventHandler(this.smenuStartMonitorServer_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            // 
             // smenuExit
             // 
             this.smenuExit.Name = "smenuExit";
@@ -109,43 +136,37 @@
             // menuHelp
             // 
             this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.smenuHelp,
+            this.smenuLicense,
+            this.toolStripSeparator3,
             this.smenuAbout});
             this.menuHelp.Name = "menuHelp";
             this.menuHelp.Size = new System.Drawing.Size(44, 20);
             this.menuHelp.Text = "Help";
+            // 
+            // smenuHelp
+            // 
+            this.smenuHelp.Enabled = false;
+            this.smenuHelp.Name = "smenuHelp";
+            this.smenuHelp.Size = new System.Drawing.Size(152, 22);
+            this.smenuHelp.Text = "Help";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // smenuAbout
             // 
             this.smenuAbout.Name = "smenuAbout";
             this.smenuAbout.Size = new System.Drawing.Size(152, 22);
             this.smenuAbout.Text = "About";
+            this.smenuAbout.Click += new System.EventHandler(this.smenuAbout_Click);
             // 
             // _notifyIcon
             // 
             this._notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("_notifyIcon.Icon")));
             this._notifyIcon.Visible = true;
-            // 
-            // smenuStartMonitorServer
-            // 
-            this.smenuStartMonitorServer.Name = "smenuStartMonitorServer";
-            this.smenuStartMonitorServer.Size = new System.Drawing.Size(178, 22);
-            this.smenuStartMonitorServer.Text = "Start monitor server";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
-            // 
-            // smenuAddNewItem
-            // 
-            this.smenuAddNewItem.Name = "smenuAddNewItem";
-            this.smenuAddNewItem.Size = new System.Drawing.Size(178, 22);
-            this.smenuAddNewItem.Text = "Add new item";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
             // 
             // statusStrip1
             // 
@@ -160,7 +181,7 @@
             this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tabServers);
+            this.tabControl.Controls.Add(this.tabItems);
             this.tabControl.Controls.Add(this.tabLogs);
             this.tabControl.Location = new System.Drawing.Point(12, 27);
             this.tabControl.Name = "tabControl";
@@ -168,27 +189,16 @@
             this.tabControl.Size = new System.Drawing.Size(872, 463);
             this.tabControl.TabIndex = 3;
             // 
-            // tabServers
+            // tabItems
             // 
-            this.tabServers.Controls.Add(this.dgvProcessList);
-            this.tabServers.Location = new System.Drawing.Point(4, 22);
-            this.tabServers.Name = "tabServers";
-            this.tabServers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabServers.Size = new System.Drawing.Size(864, 437);
-            this.tabServers.TabIndex = 0;
-            this.tabServers.Text = "Servers";
-            this.tabServers.UseVisualStyleBackColor = true;
-            // 
-            // tabLogs
-            // 
-            this.tabLogs.Controls.Add(this.txtLogs);
-            this.tabLogs.Location = new System.Drawing.Point(4, 22);
-            this.tabLogs.Name = "tabLogs";
-            this.tabLogs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLogs.Size = new System.Drawing.Size(864, 437);
-            this.tabLogs.TabIndex = 1;
-            this.tabLogs.Text = "Logs";
-            this.tabLogs.UseVisualStyleBackColor = true;
+            this.tabItems.Controls.Add(this.dgvProcessList);
+            this.tabItems.Location = new System.Drawing.Point(4, 22);
+            this.tabItems.Name = "tabItems";
+            this.tabItems.Padding = new System.Windows.Forms.Padding(3);
+            this.tabItems.Size = new System.Drawing.Size(864, 437);
+            this.tabItems.TabIndex = 0;
+            this.tabItems.Text = "Items";
+            this.tabItems.UseVisualStyleBackColor = true;
             // 
             // dgvProcessList
             // 
@@ -236,6 +246,17 @@
             this.colRestarts.Name = "colRestarts";
             this.colRestarts.ReadOnly = true;
             // 
+            // tabLogs
+            // 
+            this.tabLogs.Controls.Add(this.txtLogs);
+            this.tabLogs.Location = new System.Drawing.Point(4, 22);
+            this.tabLogs.Name = "tabLogs";
+            this.tabLogs.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLogs.Size = new System.Drawing.Size(864, 437);
+            this.tabLogs.TabIndex = 1;
+            this.tabLogs.Text = "Logs";
+            this.tabLogs.UseVisualStyleBackColor = true;
+            // 
             // txtLogs
             // 
             this.txtLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -248,6 +269,13 @@
             this.txtLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLogs.Size = new System.Drawing.Size(852, 425);
             this.txtLogs.TabIndex = 0;
+            // 
+            // smenuLicense
+            // 
+            this.smenuLicense.Name = "smenuLicense";
+            this.smenuLicense.Size = new System.Drawing.Size(152, 22);
+            this.smenuLicense.Text = "License";
+            this.smenuLicense.Click += new System.EventHandler(this.smenuLicense_Click);
             // 
             // FrmMain
             // 
@@ -267,10 +295,10 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
-            this.tabServers.ResumeLayout(false);
+            this.tabItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.tabLogs.ResumeLayout(false);
             this.tabLogs.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,7 +320,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabServers;
+        private System.Windows.Forms.TabPage tabItems;
         private System.Windows.Forms.DataGridView dgvProcessList;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
@@ -300,6 +328,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRestarts;
         private System.Windows.Forms.TabPage tabLogs;
         private System.Windows.Forms.TextBox txtLogs;
+        private System.Windows.Forms.ToolStripMenuItem smenuHelp;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem smenuLicense;
     }
 }
 

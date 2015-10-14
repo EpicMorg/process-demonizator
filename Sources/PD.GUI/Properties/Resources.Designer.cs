@@ -59,5 +59,15 @@ namespace process_demonizator.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gksu_root_terminal {
+            get {
+                object obj = ResourceManager.GetObject("gksu_root_terminal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,6 +39,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\FrmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmAbout.Designer.cs">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmAdd.Designer.cs">
+      <DependentUpon>FrmAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +77,12 @@
     <Compile Include="UI\FrmSettings.Designer.cs">
       <DependentUpon>FrmSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmStartHM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmStartHM.Designer.cs">
+      <DependentUpon>FrmStartHM.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -73,11 +93,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\FrmAbout.resx">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmAdd.resx">
+      <DependentUpon>FrmAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmStartHM.resx">
+      <DependentUpon>FrmStartHM.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -94,9 +123,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="gksu_root_terminal.ico" />
+    <None Include="Resources\gksu_root_terminal.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <ProjectReference Include="..\assets\IPAddressControlLib\IPAddressControlLib.csproj">
+      <Project>{A5ED2B33-5644-47C4-BC30-A4840F67FF87}</Project>
+      <Name>IPAddressControlLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
