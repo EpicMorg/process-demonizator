@@ -1,0 +1,6 @@
+D:\WORK\Git\Github\process-demonizator\Sources\PD.TUI\bin\Debug\PD.TUI.exe.config
+D:\WORK\Git\Github\process-demonizator\Sources\PD.TUI\bin\Debug\PD.TUI.exe
+D:\WORK\Git\Github\process-demonizator\Sources\PD.TUI\bin\Debug\PD.TUI.pdb
+D:\WORK\Git\Github\process-demonizator\Sources\PD.TUI\obj\Debug\PD.TUI.csprojResolveAssemblyReference.cache
+D:\WORK\Git\Github\process-demonizator\Sources\PD.TUI\obj\Debug\PD.TUI.exe
+D:\WORK\Git\Github\process-demonizator\Sources\PD.TUI\obj\Debug\PD.TUI.pdb

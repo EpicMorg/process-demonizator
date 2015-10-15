@@ -19,6 +19,7 @@ namespace process_demonizator.UI
             var progNameVer = AssemblyProduct + @" " + AssemblyVersion;
             InitializeComponent();
             Text = @"Add new item :: " + progNameVer;
+            //txtPassword.PasswordChar = '●';
         }
 
 
