@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Process Demonizator :: CommandLine Interface")]
-[assembly: AssemblyDescription("Process Demonizator :: CommandLine Interface")]
+[assembly: AssemblyTitle("Process Demonizator :: CommandLine Core")]
+[assembly: AssemblyDescription("Process Demonizator :: CommandLine Core")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EpicMorg")]
-[assembly: AssemblyProduct("Process Demonizator :: CommandLine Interface")]
+[assembly: AssemblyProduct("Process Demonizator :: CommandLine Core")]
 [assembly: AssemblyCopyright("Copyright © EpicMorg 2015")]
 [assembly: AssemblyTrademark("EpicMorg")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("21a89e7a-0c1d-4e9e-a13d-cb92864ee8a6")]
+[assembly: Guid("94440e9f-ff52-4fd8-aa0c-cfa2f07c954b")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
