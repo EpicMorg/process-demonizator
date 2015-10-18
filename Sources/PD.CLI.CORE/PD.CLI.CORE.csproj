@@ -36,6 +36,10 @@
     <ApplicationIcon>gksu_root_terminal.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SimpleInjector, Version=3.1.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.3.1.0\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,12 +53,18 @@
     <Compile Include="Api\AdminApi.cs" />
     <Compile Include="Api\ClientApi.cs" />
     <Compile Include="Api\DataTypes.cs" />
-    <Compile Include="Api\ProcessManager.cs" />
+    <Compile Include="Core\DataStorage.cs" />
+    <Compile Include="Core\DI.cs" />
+    <Compile Include="Core\Factory.cs" />
+    <Compile Include="Core\LogManager.cs" />
+    <Compile Include="Core\ProcessManager.cs" />
+    <Compile Include="Core\Settings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="gksu_root_terminal.ico" />

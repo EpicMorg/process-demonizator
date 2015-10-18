@@ -74,13 +74,13 @@ namespace PD.Api {
 
     public interface ILogMethods {
 
-        Task<ICollection<string>> Show( int tailCount );
+        Task<IEnumerable<string>> Show( int tailCount );
 
     }
 
     public interface ISettingsMethods {
 
-        Task<ISettings> GetSettins { get; }
+        Task<ISettings> GetSettins();
 
         Task SetSettins( ISettings settings );
 

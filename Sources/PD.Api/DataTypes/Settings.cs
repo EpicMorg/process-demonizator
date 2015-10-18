@@ -14,7 +14,14 @@
 
     }
 
-    partial class SettingsPassword : Settings {
+    public interface ISettingsPassword : ISettings
+    {
+
+        string Password { get; set; }
+
+    }
+
+    public partial class SettingsPassword : Settings, ISettingsPassword {
 
         public virtual string Password { get; set; }
 

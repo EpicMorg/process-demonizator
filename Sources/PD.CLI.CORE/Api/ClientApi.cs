@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PD.Api;
 using PD.Api.DataTypes;
+using PD.CLI.CORE.Core;
 
 namespace PD.CLI.CORE.Api {
 
     public class ClientApi : IClientApi {
+
+        public ClientApi( IClientProcessMethods process ) {
+            Process = process;
+        }
 
         public IClientProcessMethods Process { get; }
 
@@ -15,6 +20,10 @@ namespace PD.CLI.CORE.Api {
     public class ClientProcessMethods : IClientProcessMethods {
 
         private IProcessManager _processRepository;
+
+        public ClientProcessMethods( IProcessManager processRepository ) {
+            _processRepository = processRepository;
+        }
 
         public async Task<IEnumerable<IDemonizedProcessBase>> List() => ( await _processRepository.List().ConfigureAwait( false ) );
 

@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using PD.Api.DataTypes;
+using PD.CLI.CORE.Api;
 
-namespace PD.CLI.CORE.Api {
+namespace PD.CLI.CORE.Core {
 
     public interface IProcessManager {
 
@@ -20,9 +21,18 @@ namespace PD.CLI.CORE.Api {
     }
     public class ProcessManager: IProcessManager {
 
+        private readonly IDataStorage<IInternalDemonizedProcess> _storage;
+
         private Dictionary<int, IInternalDemonizedProcess> _processes;//stub
 
         private int i = 0;
+
+        private IInternalSettings _settings;
+
+        public ProcessManager( ISettingsFactory settings, IDataStorage<IInternalDemonizedProcess> storage ) {
+            _storage = storage;
+            _settings = settings.Get();
+        }
 
         private async Task<int> NextId() => i++;//todo: actual id
 

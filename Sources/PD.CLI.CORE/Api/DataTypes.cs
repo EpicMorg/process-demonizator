@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using PD.Api.DataTypes;
 
 namespace PD.CLI.CORE.Api {
@@ -25,6 +26,10 @@ namespace PD.CLI.CORE.Api {
         private ISettings _settings;
 
         private Process process;
+
+
+        public InternalDemonizedProcess( ISettings settings ) { _settings = settings; }
+
 
         public string Key { get; set; }
 
@@ -52,5 +57,6 @@ namespace PD.CLI.CORE.Api {
         private async Task StopInternal() { throw new System.NotImplementedException(); }
         private async Task StartInternal() { throw new System.NotImplementedException(); }
     }
+
 
 }
