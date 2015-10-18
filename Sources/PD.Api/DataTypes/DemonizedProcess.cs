@@ -13,8 +13,8 @@ namespace PD.Api.DataTypes {
 
         string Path { get; set; }
         string Arguments { get; set; }
-        string HideOnStart { get; set; }
-        string Autorestart { get; set; }
+        bool HideOnStart { get; set; }
+        bool Autorestart { get; set; }
         ProcessPriorityClass Priority { get; set; }
 
     }
@@ -27,7 +27,7 @@ namespace PD.Api.DataTypes {
 
     public interface IRunningDemonizedProcess : IDemonizedProcess {
 
-        Status Status { get; set; }
+        Status Status { get; }
         ProcessPriorityClass CurrentPriority { get; set; }
 
     }
@@ -43,8 +43,8 @@ namespace PD.Api.DataTypes {
 
         public virtual string Path { get; set; }
         public virtual string Arguments { get; set; }
-        public virtual string HideOnStart { get; set; }
-        public virtual string Autorestart { get; set; }
+        public virtual bool HideOnStart { get; set; }
+        public virtual bool Autorestart { get; set; }
         public virtual ProcessPriorityClass Priority { get; set; }
 
     }
@@ -57,7 +57,7 @@ namespace PD.Api.DataTypes {
 
     public class RunningDemonizedProcess : DemonizedProcess, IRunningDemonizedProcess {
 
-        public virtual Status Status { get; set; }
+        public virtual Status Status { get; protected set; }
         public virtual ProcessPriorityClass CurrentPriority { get; set; }
 
     }
@@ -68,7 +68,7 @@ namespace PD.Api.DataTypes {
         Starting,
         Running,
         Stopping,
-        Restarting
+        Restarting,
 
     }
 

@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace PD.CLI.CORE.Core
+namespace PD.CLI.CORE.Helpers
 {
     public interface IDataStorage<T> {
 
