@@ -29,8 +29,8 @@ namespace PD.CLI.CORE.Core {
 
         private IInternalSettings _settings;
 
-        public ProcessManager( ISettingsFactory settings, IDataStorage<IInternalDemonizedProcess> storage ) {
-            _storage = storage;
+        public ProcessManager( ISettingsFactory settings, IDataStorageFactory storage ) {
+            _storage = storage.Get<IInternalDemonizedProcess>();
             _settings = settings.Get();
         }
 

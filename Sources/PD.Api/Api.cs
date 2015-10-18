@@ -80,9 +80,9 @@ namespace PD.Api {
 
     public interface ISettingsMethods {
 
-        Task<ISettings> GetSettins();
+        Task<ISettings> GetSettings();
 
-        Task SetSettins( ISettings settings );
+        Task SetSettings( ISettings settings );
 
         Task SetKey( string key );
 

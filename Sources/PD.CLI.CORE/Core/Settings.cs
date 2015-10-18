@@ -1,4 +1,5 @@
 ﻿using PD.Api.DataTypes;
+using PD.CLI.CORE.Helpers;
 
 namespace PD.CLI.CORE.Core {
 
@@ -10,7 +11,20 @@ namespace PD.CLI.CORE.Core {
 
     public class SettingsManager : ISettingsManager {
 
-        public ISettingsPassword Settings { get; set; }
+        private ISettingsFactory _factory;
+
+        public SettingsManager( ISettingsFactory factory ) { _factory = factory; }
+
+        public ISettingsPassword Settings
+        {
+            get { return _factory.Get(); }
+            set
+            {
+                var entry = _factory.Get();
+                MappingHelper.Instance.Map( value, entry );
+                _factory.Set( entry );
+            }
+        }
 
     }
 
@@ -26,17 +40,21 @@ namespace PD.CLI.CORE.Core {
 
     }
 
-    public interface ISettingsFactory : IFactory<IInternalSettings> {
+    public interface ISettingsFactory : IStorage<IInternalSettings> {
 
     }
 
     public class SettingsFactory : ISettingsFactory {
 
-        private IDataStorage<IInternalSettings> _dataStorage;
+        private const string path = "settings.xml";
 
-        public SettingsFactory( IDataStorage<IInternalSettings> dataStorage ) { _dataStorage = dataStorage; }
+        private IDataStorage<InternalSettings> _dataStorage;
 
-        public IInternalSettings Get() => _dataStorage.Load( "settings.xml" );
+        public SettingsFactory( IDataStorageFactory dataStorage ) { _dataStorage = dataStorage.Get<InternalSettings>(); }
+
+        public IInternalSettings Get() => _dataStorage.Load( path )??new InternalSettings();
+
+        public void Set( IInternalSettings value ) => _dataStorage.Save( path, (InternalSettings)value );
 
     }
 

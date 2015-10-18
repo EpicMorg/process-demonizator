@@ -36,6 +36,14 @@
     <ApplicationIcon>gksu_root_terminal.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.0.46.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.0.46\lib\net40\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SimpleInjector, Version=3.1.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.3.1.0\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
@@ -54,11 +62,12 @@
     <Compile Include="Api\ClientApi.cs" />
     <Compile Include="Api\DataTypes.cs" />
     <Compile Include="Core\DataStorage.cs" />
-    <Compile Include="Core\DI.cs" />
+    <Compile Include="Helpers\DI.cs" />
     <Compile Include="Core\Factory.cs" />
     <Compile Include="Core\LogManager.cs" />
     <Compile Include="Core\ProcessManager.cs" />
     <Compile Include="Core\Settings.cs" />
+    <Compile Include="Helpers\Mapping.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
