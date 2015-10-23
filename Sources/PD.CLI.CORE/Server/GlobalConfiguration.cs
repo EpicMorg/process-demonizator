@@ -19,6 +19,7 @@ namespace PD.CLI.CORE.Server {
                     }
                 }
             };
+            config.Formatters.Remove( config.Formatters.XmlFormatter );
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute( name: "DefaultApi", routeTemplate: "{controller}/{id}/{action}", defaults: new { id = RouteParameter.Optional } );
             

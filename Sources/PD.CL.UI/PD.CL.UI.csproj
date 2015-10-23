@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\FrmConnectToServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmConnectToServer.Designer.cs">
+      <DependentUpon>FrmConnectToServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +63,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\FrmConnectToServer.resx">
+      <DependentUpon>FrmConnectToServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -70,6 +79,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\PD.Api.DataTypes.IDemonizedProcessBase.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,6 +97,14 @@
     <Content Include="gksu_root_terminal.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PD.Api.Client\PD.Api.Client.csproj">
+      <Project>{F3CB51DC-D3A2-489D-B405-75E4873C2059}</Project>
+      <Name>PD.Api.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PD.Api\PD.Api.csproj">
+      <Project>{a33db0bc-29c3-449e-a46a-187851b194fc}</Project>
+      <Name>PD.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PD.UI.Shared\PD.UI.Shared.csproj">
       <Project>{27C54701-96A6-453E-9B7F-65545DAB1ADB}</Project>
       <Name>PD.UI.Shared</Name>

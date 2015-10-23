@@ -15,6 +15,7 @@ namespace PD.Api.Client
 
         public ClientApi( string server ) {
             _server = server;
+            Process = new ClientProcessMethods( this );
         }
 
         public IClientProcessMethods Process { get; }
@@ -33,7 +34,7 @@ namespace PD.Api.Client
         }
 
         public async Task<IEnumerable<IDemonizedProcessBase>> List() {
-            var resp = await _client.GetAsync( "/" ).ConfigureAwait( false );
+            var resp = await _client.GetAsync( "" ).ConfigureAwait( false );
             ThrowOnNonSuccess( resp );
             var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait( false );
             var obj = JsonConvert.DeserializeObject<DemonizedProcessBase[]>( ret );
@@ -41,7 +42,7 @@ namespace PD.Api.Client
         }
 
         public async Task<IRunningDemonizedProcess> Get( int id, string key ) {
-            var resp = await _client.GetAsync( $"/{id}").ConfigureAwait(false);
+            var resp = await _client.GetAsync( $"{id}").ConfigureAwait(false);
             ThrowOnNonSuccess(resp);
             var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
             var obj = JsonConvert.DeserializeObject<RunningDemonizedProcess>( ret );
@@ -57,7 +58,7 @@ namespace PD.Api.Client
         private static void ThrowOnNonSuccess(HttpResponseMessage resp) { if (!resp.IsSuccessStatusCode) throw new Exception("Bad server response status code"); }
         private async Task<string> PostKey(int id, string key, string action)
         {
-            var resp = await _client.PostAsync($"/{id}/{action}", new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("key", key) })).ConfigureAwait(false);
+            var resp = await _client.PostAsync($"{id}/{action}", new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("key", key) })).ConfigureAwait(false);
             ThrowOnNonSuccess(resp);
             var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
             return ret;
