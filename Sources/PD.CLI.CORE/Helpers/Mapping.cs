@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PD.Api.DataTypes;
+using PD.CLI.CORE.Api;
 using PD.CLI.CORE.Core;
 
 namespace PD.CLI.CORE.Helpers
@@ -11,8 +12,15 @@ namespace PD.CLI.CORE.Helpers
         public static MappingHelper Instance => _instance;
 
         private MappingHelper() {
+            Mapper.Configuration.ConstructServicesUsing( type=>Di.Get(type) );
             Mapper.CreateMap<ISettingsPassword, IInternalSettings>();
             Mapper.CreateMap<ISettings, ISettingsPassword>();
+            Mapper.CreateMap<ISettingsPassword, ISettingsPassword>();
+
+            Mapper.CreateMap<IPasswordedDemonizedProcess, InternalDemonizedProcess>().ConstructUsingServiceLocator();
+
+            Mapper.CreateMap<InternalDemonizedProcess, PasswordedDemonizedProcess>();
+            Mapper.CreateMap<InternalDemonizedProcess, DemonizedProcessBase>();
         }
 
         public void Map<TSource, TDest>( TSource source, TDest dest ) => Mapper.Map( source, dest );

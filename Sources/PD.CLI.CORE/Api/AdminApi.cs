@@ -78,7 +78,7 @@ namespace PD.CLI.CORE.Api {
                 throw new ArgumentNullException();
             }
             var existing = _repository.Settings;
-            MappingHelper.Instance.Map( settings, existing );
+            MappingHelper.Instance.Map<ISettings, ISettingsPassword>( settings, existing );
             _repository.Settings = existing;
         }
 

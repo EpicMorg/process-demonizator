@@ -1,20 +1,28 @@
-﻿using PD.Api;
+﻿using System;
+using PD.Api;
 using PD.CLI.CORE.Api;
 using PD.CLI.CORE.Helpers;
+using PD.CLI.CORE.Server;
 using SimpleInjector;
+using SimpleInjector.Integration.WebApi;
 
 namespace PD.CLI.CORE.Core {
 
-    public class Di {
+    public static class Di {
 
-        private readonly Container _container;
+        private static Container _container;
 
-        private Di() {
-            _container = new Container();
+        static Di() { }
+
+        public static void Initialize() {
+            _container = new Container { Options = { DefaultScopedLifestyle = new WebApiRequestLifestyle() } };
             RegisterTypes();
+            _container.RegisterWebApiControllers(GlobalConfiguration.HttpConfiguration);
+            _container.Verify();
+            GlobalConfiguration.HttpConfiguration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(_container);
         }
 
-        private void RegisterTypes() {
+        private static void RegisterTypes() {
             //shared
             _container.Register<IInternalDemonizedProcess, InternalDemonizedProcess>( Lifestyle.Transient );
             _container.Register<ISettingsFactory, SettingsFactory>( Lifestyle.Singleton );
@@ -32,9 +40,9 @@ namespace PD.CLI.CORE.Core {
             _container.Register<IClientApi, ClientApi>( Lifestyle.Singleton );
         }
 
-        public static Di Instance { get; } = new Di();
+        public static T Get<T>() where T : class => _container.GetInstance<T>();
 
-        public T Get<T>() where T : class => _container.GetInstance<T>();
+        public static object Get( Type type ) => _container.GetInstance( type );
 
     }
 

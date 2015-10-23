@@ -1,30 +1,23 @@
 ﻿using System;
-using System.Threading.Tasks;
-using PD.Api;
-using PD.CLI.CORE.Api;
+using System.Threading;
+using Microsoft.Owin.Hosting;
 using PD.CLI.CORE.Core;
-using ServiceStack.Text;
+using PD.CLI.CORE.Server;
 
 namespace PD.CLI.CORE {
 
     internal class Program {
 
         private static void Main( string[] args ) {
-            MainAsync(args).Wait();
-        }
-
-        private static async Task MainAsync( string[] args ) {
-            try {
-                var api = Di.Instance.Get<IAdminApi>();
-                var settings = await api.Settings.GetSettings().ConfigureAwait( false );
-                settings.Dump();
-                await api.Settings.SetKey( "hitler" ).ConfigureAwait( false );
-                settings = await api.Settings.GetSettings().ConfigureAwait( false );
+            Di.Initialize();
+            var config = new FileConfiguration { Url = "http://localhost:31337" };
+            Console.WriteLine("Satan server is starting up...");
+            using (WebApp.Start<Startup>(config.Url))
+            {
+                Console.WriteLine($"Listening on {config.Url}");
+                Thread.Sleep(Timeout.InfiniteTimeSpan);
             }
-            catch ( Exception e ) {
-                Console.WriteLine( e );
-            }
-            Console.ReadLine();
+            Console.WriteLine("Quitting");
         }
 
     }

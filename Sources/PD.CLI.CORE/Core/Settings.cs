@@ -21,7 +21,7 @@ namespace PD.CLI.CORE.Core {
             set
             {
                 var entry = _factory.Get();
-                MappingHelper.Instance.Map( value, entry );
+                MappingHelper.Instance.Map<ISettingsPassword, ISettingsPassword>( value, entry );
                 _factory.Set( entry );
             }
         }

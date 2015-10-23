@@ -12,9 +12,9 @@ namespace PD.Api {
 
     public interface IAuthorizeMethods {
 
-        Task<IClientApi> Authorize();
+        Task Authorize();
 
-        Task<IAdminApi> Authorize( string key );
+        Task Authorize( string key );
 
     }
 

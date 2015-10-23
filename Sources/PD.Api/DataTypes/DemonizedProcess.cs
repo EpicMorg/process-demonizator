@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace PD.Api.DataTypes {
 
@@ -28,7 +30,7 @@ namespace PD.Api.DataTypes {
     public interface IRunningDemonizedProcess : IDemonizedProcess {
 
         Status Status { get; }
-        ProcessPriorityClass CurrentPriority { get; set; }
+        ProcessPriorityClass? CurrentPriority { get; set; }
 
     }
 
@@ -58,7 +60,7 @@ namespace PD.Api.DataTypes {
     public class RunningDemonizedProcess : DemonizedProcess, IRunningDemonizedProcess {
 
         public virtual Status Status { get; protected set; }
-        public virtual ProcessPriorityClass CurrentPriority { get; set; }
+        public virtual ProcessPriorityClass? CurrentPriority { get; set; }
 
     }
 

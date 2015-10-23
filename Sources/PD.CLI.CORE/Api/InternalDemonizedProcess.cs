@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using PD.Api.DataTypes;
@@ -35,9 +36,11 @@ namespace PD.CLI.CORE.Api {
 
         public InternalDemonizedProcess( ISettingsFactory settings ) { _settings = settings.Get(); }
 
-        public string Key { get; set; }
+        public override ProcessPriorityClass? CurrentPriority => IsRunning() ? process.PriorityClass : (ProcessPriorityClass?) null;
 
-        public int? ProcessId => process?.Id;
+        public virtual string Key { get; set; }
+
+        public virtual int? ProcessId => IsRunning() ? process.Id:(int?) null;
 
         public async Task Start() {
             if ( Status != Status.NotRunning ) return;
@@ -45,7 +48,7 @@ namespace PD.CLI.CORE.Api {
                 if ( Status != Status.NotRunning ) return;
                 Status = Status.Starting;
             }
-            StartInternal();
+            StartInternal().ConfigureAwait( false );//sic!
             lock ( statusLocker ) Status = Status.Running;
         }
 
@@ -70,42 +73,64 @@ namespace PD.CLI.CORE.Api {
             lock ( statusLocker ) Status = Status.Running;
         }
 
-        public async Task Hide() {
-            //win32 api call here
+        
+        //https://msdn.microsoft.com/en-us/library/windows/desktop/ms633548(v=vs.85).aspx
+
+        public async Task Hide() => SendCommandToMainWindow(0);
+
+        public async Task Show() => SendCommandToMainWindow( 5 );
+
+        private void SendCommandToMainWindow( int nCmdShow ) {
+            if ( !IsRunning() ) return;
+            if ( process.MainWindowHandle == IntPtr.Zero ) return;
+            ShowWindow( process.MainWindowHandle, nCmdShow );
         }
 
-        public async Task Show() {
-            //win32 api call here
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hwnd, int nCmdShow);
+
+        private bool IsRunning() {
+            return process != null && !process.HasExited;//check
         }
 
-        private async Task StopInternal() { }
+        private async Task StopInternal() {
+            if ( !IsRunning() ) return;
+            try {
+                process.Kill();
+            }
+            catch ( Exception e ) {
+                //Console.WriteLine( e );
+                //todo: log
+            }
+        }
 
         private async Task StartInternal() {
-            for ( int i = 0; i < _settings.RestartLimit; i++ ) {
-                var process = new Process() {
-                    StartInfo = {
+            process = new Process()
+            {
+                StartInfo = {
                         Arguments = Arguments,
                         FileName = Path,
                         CreateNoWindow = HideOnStart,
                         WindowStyle = HideOnStart ? ProcessWindowStyle.Hidden : ProcessWindowStyle.Normal,
                         UseShellExecute = false,
                     }
-                };
-                try {
-                    process.Exited += (a, b) => _event.Release();
-                    await _event.WaitAsync().ConfigureAwait( false );
-                    process.Start();
+            };
+            for ( int i = 0; i < _settings.RestartLimit; i++ ) {
+                if (Status == Status.Running) { 
+                    try {
+                        process.Exited += (a, b) => _event.Release();
+                        await _event.WaitAsync().ConfigureAwait( false );
+                        process.Start();
+                    }
+                    catch(Exception ex) {
+                        _event.Release();//
+                    }
+                    if ( !Autorestart ) {
+                        break;
+                    }
                 }
-                catch(Exception ex) {
-                    _event.Release();//
-                }
-                if ( !Autorestart ) {
-                    break;
-                }
-
             }
         }
-
     }
 
 }
