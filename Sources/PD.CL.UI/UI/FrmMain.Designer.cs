@@ -46,8 +46,6 @@
             this.smenuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.smenuLicense = new System.Windows.Forms.ToolStripMenuItem();
-            this.smenuSettions = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.smenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.smenuStartMonitorServer = new System.Windows.Forms.ToolStripMenuItem();
@@ -167,23 +165,24 @@
             // 
             this._notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("_notifyIcon.Icon")));
             this._notifyIcon.Visible = true;
+            this._notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this._notifyIcon_MouseClick);
             // 
             // smenuAbout
             // 
             this.smenuAbout.Name = "smenuAbout";
-            this.smenuAbout.Size = new System.Drawing.Size(152, 22);
+            this.smenuAbout.Size = new System.Drawing.Size(113, 22);
             this.smenuAbout.Text = "About";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(110, 6);
             // 
             // smenuHelp
             // 
             this.smenuHelp.Enabled = false;
             this.smenuHelp.Name = "smenuHelp";
-            this.smenuHelp.Size = new System.Drawing.Size(152, 22);
+            this.smenuHelp.Size = new System.Drawing.Size(113, 22);
             this.smenuHelp.Text = "Help";
             // 
             // menuHelp
@@ -200,23 +199,9 @@
             // smenuLicense
             // 
             this.smenuLicense.Name = "smenuLicense";
-            this.smenuLicense.Size = new System.Drawing.Size(152, 22);
+            this.smenuLicense.Size = new System.Drawing.Size(113, 22);
             this.smenuLicense.Text = "License";
             this.smenuLicense.Click += new System.EventHandler(this.smenuLicense_Click);
-            // 
-            // smenuSettions
-            // 
-            this.smenuSettions.Name = "smenuSettions";
-            this.smenuSettions.Size = new System.Drawing.Size(152, 22);
-            this.smenuSettions.Text = "Settings";
-            // 
-            // menuEdit
-            // 
-            this.menuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.smenuSettions});
-            this.menuEdit.Name = "menuEdit";
-            this.menuEdit.Size = new System.Drawing.Size(39, 20);
-            this.menuEdit.Text = "Edit";
             // 
             // smenuExit
             // 
@@ -250,7 +235,6 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuFile,
-            this.menuEdit,
             this.menuHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -271,7 +255,7 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "name + vers";
-            this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.Resize += new System.EventHandler(this.FormForTray_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.tabItems.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
@@ -302,8 +286,6 @@
         private System.Windows.Forms.ToolStripMenuItem smenuHelp;
         private System.Windows.Forms.ToolStripMenuItem menuHelp;
         private System.Windows.Forms.ToolStripMenuItem smenuLicense;
-        private System.Windows.Forms.ToolStripMenuItem smenuSettions;
-        private System.Windows.Forms.ToolStripMenuItem menuEdit;
         private System.Windows.Forms.ToolStripMenuItem smenuExit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem smenuStartMonitorServer;

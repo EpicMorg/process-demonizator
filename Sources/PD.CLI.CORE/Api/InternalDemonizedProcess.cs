@@ -76,7 +76,7 @@ namespace PD.CLI.CORE.Api {
         
         //https://msdn.microsoft.com/en-us/library/windows/desktop/ms633548(v=vs.85).aspx
 
-        public async Task Hide() => SendCommandToMainWindow(0);
+        public async Task Hide() => SendCommandToMainWindow( 0 );
 
         public async Task Show() => SendCommandToMainWindow( 5 );
 
@@ -129,6 +129,7 @@ namespace PD.CLI.CORE.Api {
                         break;
                     }
                 }
+                Restarts++;
             }
         }
     }

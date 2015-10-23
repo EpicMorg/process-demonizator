@@ -1,34 +1,15 @@
-﻿using System;
-using System.Reflection;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using PD.UI.Shared;
 
-namespace process_demonizator.UI
-{
-    public sealed partial class FrmStartHm : Form
-    {
-        public FrmStartHm()
-        {
-            {
-                var progNameVer = AssemblyProduct + @" " + AssemblyVersion;
-                InitializeComponent();
-                Text = @"Connect to server :: " + progNameVer;
-            }
+namespace process_demonizator.UI {
+
+    public sealed partial class FrmStartHm : Form {
+
+        public FrmStartHm() {
+            InitializeComponent();
+            Text = $@"Connect to server :: {InfoHelper.NameVersion}";
         }
 
-        public string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
-
-        public string AssemblyProduct
-        {
-            get
-            {
-                var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-                return attributes.Length == 0 ? "" : ((AssemblyProductAttribute)attributes[0]).Product;
-            }
-        }
-        private void FrmStartHM_Load(object sender, EventArgs e)
-        {
-
-        }
     }
+
 }

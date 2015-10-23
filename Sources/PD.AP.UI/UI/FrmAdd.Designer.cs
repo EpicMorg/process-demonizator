@@ -229,7 +229,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "name ver";
-            this.Load += new System.EventHandler(this.FrmAdd_Load);
             this.bgxNull2.ResumeLayout(false);
             this.bgxNull2.PerformLayout();
             this.bgxNull1.ResumeLayout(false);

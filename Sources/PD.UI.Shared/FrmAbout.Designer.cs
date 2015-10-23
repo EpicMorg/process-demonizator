@@ -1,4 +1,6 @@
-﻿namespace process_demonizator.UI
+﻿using PD.UI.Shared.Properties;
+
+namespace process_demonizator.UI
 {
     sealed partial class FrmAbout
     {
@@ -42,7 +44,7 @@
             // 
             // picLogo
             // 
-            this.picLogo.Image = global::process_demonizator.Properties.Resources.gksu_root_terminal;
+            this.picLogo.Image = Resources.gksu_root_terminal;
             this.picLogo.Location = new System.Drawing.Point(12, 12);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(48, 48);

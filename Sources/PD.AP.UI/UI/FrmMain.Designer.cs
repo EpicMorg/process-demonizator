@@ -90,14 +90,14 @@
             // smenuAddNewItem
             // 
             this.smenuAddNewItem.Name = "smenuAddNewItem";
-            this.smenuAddNewItem.Size = new System.Drawing.Size(208, 22);
+            this.smenuAddNewItem.Size = new System.Drawing.Size(170, 22);
             this.smenuAddNewItem.Text = "Add new item";
             this.smenuAddNewItem.Click += new System.EventHandler(this.smenuAddNewItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(205, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(167, 6);
             // 
             // smenuStartMonitorServer
             // 
@@ -109,12 +109,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(205, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(167, 6);
             // 
             // smenuExit
             // 
             this.smenuExit.Name = "smenuExit";
-            this.smenuExit.Size = new System.Drawing.Size(208, 22);
+            this.smenuExit.Size = new System.Drawing.Size(170, 22);
             this.smenuExit.Text = "Exit";
             this.smenuExit.Click += new System.EventHandler(this.smenuExit_Click);
             // 
@@ -174,6 +174,7 @@
             // 
             this._notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("_notifyIcon.Icon")));
             this._notifyIcon.Visible = true;
+            this._notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this._notifyIcon_MouseClick);
             // 
             // statusStrip1
             // 
@@ -291,7 +292,7 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "name + ver";
-            this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);

@@ -1,40 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using PD.UI.Shared;
 
-namespace process_demonizator.UI
-{
-    public sealed partial class FrmSettings : Form
-    {
-        public FrmSettings()
-        {
-            var progNameVer = AssemblyProduct + @" " + AssemblyVersion;
+namespace process_demonizator.UI {
+
+    public sealed partial class FrmSettings : Form {
+
+        public FrmSettings() {
             InitializeComponent();
-            Text = @"Settings :: " + progNameVer;
-        }
-        public string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
-
-        public string AssemblyProduct
-        {
-            get
-            {
-                var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-                return attributes.Length == 0 ? "" : ((AssemblyProductAttribute)attributes[0]).Product;
-            }
+            Text = $@"Settings :: {InfoHelper.NameVersion}";
         }
 
-
-        private void FrmSettings_Load(object sender, EventArgs e)
-        {
-
-        }
     }
+
 }

@@ -51,12 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI\FrmAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\FrmAbout.Designer.cs">
-      <DependentUpon>FrmAbout.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\FrmAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,9 +87,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\FrmAbout.resx">
-      <DependentUpon>FrmAbout.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmAdd.resx">
       <DependentUpon>FrmAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,11 +116,10 @@
     <Content Include="gksu_root_terminal.ico" />
     <None Include="Resources\gksu_root_terminal.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\assets\IPAddressControlLib\IPAddressControlLib.csproj">
-      <Project>{A5ED2B33-5644-47C4-BC30-A4840F67FF87}</Project>
-      <Name>IPAddressControlLib</Name>
+    <ProjectReference Include="..\PD.UI.Shared\PD.UI.Shared.csproj">
+      <Project>{27C54701-96A6-453E-9B7F-65545DAB1ADB}</Project>
+      <Name>PD.UI.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

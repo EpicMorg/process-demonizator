@@ -165,7 +165,6 @@
             this.Name = "FrmSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "name settings";
-            this.Load += new System.EventHandler(this.FrmSettings_Load);
             this.gbxOptions.ResumeLayout(false);
             this.gbxOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxRestarts)).EndInit();
