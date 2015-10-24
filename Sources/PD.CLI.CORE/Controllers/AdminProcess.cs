@@ -6,7 +6,8 @@ using PD.Api;
 using PD.Api.DataTypes;
 
 namespace PD.CLI.CORE.Controllers {
-    [RoutePrefix("Admin/Process")]//todo:authorize
+
+    [RoutePrefix( "Admin/Process" )] //todo:authorize
     public class AdminProcessController : ApiController {
 
         private readonly IAdminApi _api;
@@ -14,48 +15,54 @@ namespace PD.CLI.CORE.Controllers {
         public AdminProcessController( IAdminApi api ) { _api = api; }
 
         [HttpGet]
-        [Route("")]
+        [Route( "" )]
         public async Task<IEnumerable<IDemonizedProcessBase>> List() => await _api.Process.List().ConfigureAwait( false );
 
         [HttpGet]
-        [Route("ListFull")]
+        [Route( "ListFull" )]
         public async Task<IEnumerable<IRunningDemonizedProcess>> ListFull() => await _api.Process.ListFull().ConfigureAwait( false );
 
         [HttpPost]
-        [Route("Edit")]
+        [Route( "Edit" )]
         public async Task Edit( PasswordedDemonizedProcess model ) {
             if ( !ModelState.IsValid ) throw new ArgumentException( nameof( model ) );
             await _api.Process.Edit( model ).ConfigureAwait( false );
         }
 
         [HttpPost]
-        [Route("")]
+        [Route( "" )]
         public async Task<int> Create( PasswordedDemonizedProcess model ) {
             if ( !ModelState.IsValid ) throw new ArgumentException( nameof( model ) );
             return await _api.Process.Create( model ).ConfigureAwait( false );
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route( "{id}" )]
         public async Task<IRunningDemonizedProcess> Get( int id ) => await _api.Process.Get( id ).ConfigureAwait( false );
 
         [HttpPost]
-        public async Task Start( int id ) => await _api.Process.Start( id ).ConfigureAwait( false );
+        [Route( "{id}/Start" )]
+        public async Task Start( [FromUri] int id ) => await _api.Process.Start( id ).ConfigureAwait( false );
 
         [HttpPost]
-        public async Task Stop( int id ) => await _api.Process.Stop( id ).ConfigureAwait( false );
+        [Route( "{id}/Stop" )]
+        public async Task Stop( [FromUri] int id ) => await _api.Process.Stop( id ).ConfigureAwait( false );
 
         [HttpPost]
-        public async Task Restart( int id ) => await _api.Process.Restart( id ).ConfigureAwait( false );
+        [Route( "{id}/Restart" )]
+        public async Task Restart( [FromUri] int id ) => await _api.Process.Restart( id ).ConfigureAwait( false );
 
         [HttpPost]
-        public async Task Delete( int id ) => await _api.Process.Delete( id ).ConfigureAwait( false );
+        [Route( "{id}/Delete" )]
+        public async Task Delete( [FromUri] int id ) => await _api.Process.Delete( id ).ConfigureAwait( false );
 
         [HttpPost]
-        public async Task Show( int id ) => await _api.Process.Show( id ).ConfigureAwait( false );
+        [Route( "{id}/Show" )]
+        public async Task Show( [FromUri] int id ) => await _api.Process.Show( id ).ConfigureAwait( false );
 
         [HttpPost]
-        public async Task Hide( int id ) => await _api.Process.Hide( id ).ConfigureAwait( false );
+        [Route( "{id}/Hide" )]
+        public async Task Hide( [FromUri] int id ) => await _api.Process.Hide( id ).ConfigureAwait( false );
 
     }
 

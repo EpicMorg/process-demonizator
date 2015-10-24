@@ -28,7 +28,7 @@ namespace PD.Api.Client
 
         internal ClientProcessMethods( ClientApi api ) {
             _api = api;
-            _client = new HttpClient( new HttpClientHandler() ) { BaseAddress = new Uri( new Uri( _api._server ), "Client/Process" ) };
+            _client = new HttpClient( new HttpClientHandler() ) { BaseAddress = new Uri( new Uri( _api._server ), "Client/Process/" ) };
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
@@ -55,10 +55,13 @@ namespace PD.Api.Client
 
         public async Task Restart( int id, string key ) => await PostKey(id, key, "Restart").ConfigureAwait(false);
 
-        private static void ThrowOnNonSuccess(HttpResponseMessage resp) { if (!resp.IsSuccessStatusCode) throw new Exception("Bad server response status code"); }
-        private async Task<string> PostKey(int id, string key, string action)
-        {
-            var resp = await _client.PostAsync($"{id}/{action}", new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("key", key) })).ConfigureAwait(false);
+        public async Task<bool> CheckPassword( int id, string key) => bool.Parse(await PostKey(id, key, "CheckPassword").ConfigureAwait(false));
+
+        private static void ThrowOnNonSuccess(HttpResponseMessage resp) { if (!resp.IsSuccessStatusCode) throw new Exception($"Bad server response status code({resp.StatusCode})"); }
+        private async Task<string> PostKey(int id, string key, string action) {
+            var content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("key", key) });
+            //Client/Process/2/CheckPassword
+            var resp = await _client.PostAsync($"{id}/{action}", content).ConfigureAwait(false);
             ThrowOnNonSuccess(resp);
             var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
             return ret;

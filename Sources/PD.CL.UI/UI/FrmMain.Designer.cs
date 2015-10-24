@@ -30,8 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            this.dgvProcessList = new System.Windows.Forms.DataGridView();
             this.tabItems = new System.Windows.Forms.TabPage();
+            this.dgvProcessList = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDemonizedProcessBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl = new System.Windows.Forms.TabControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -45,42 +48,21 @@
             this.smenuStartMonitorServer = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.iDemonizedProcessBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmUnlock = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).BeginInit();
             this.tabItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iDemonizedProcessBaseBindingSource)).BeginInit();
             this.tabControl.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iDemonizedProcessBaseBindingSource)).BeginInit();
             this.cmProcess.SuspendLayout();
+            this.cmUnlock.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dgvProcessList
-            // 
-            this.dgvProcessList.AllowUserToAddRows = false;
-            this.dgvProcessList.AllowUserToDeleteRows = false;
-            this.dgvProcessList.AutoGenerateColumns = false;
-            this.dgvProcessList.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvProcessList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProcessList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn});
-            this.dgvProcessList.DataSource = this.iDemonizedProcessBaseBindingSource;
-            this.dgvProcessList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProcessList.Enabled = false;
-            this.dgvProcessList.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvProcessList.Location = new System.Drawing.Point(3, 3);
-            this.dgvProcessList.Name = "dgvProcessList";
-            this.dgvProcessList.ReadOnly = true;
-            this.dgvProcessList.Size = new System.Drawing.Size(858, 431);
-            this.dgvProcessList.TabIndex = 2;
             // 
             // tabItems
             // 
@@ -92,6 +74,44 @@
             this.tabItems.TabIndex = 0;
             this.tabItems.Text = "Items";
             this.tabItems.UseVisualStyleBackColor = true;
+            // 
+            // dgvProcessList
+            // 
+            this.dgvProcessList.AllowUserToAddRows = false;
+            this.dgvProcessList.AllowUserToDeleteRows = false;
+            this.dgvProcessList.AutoGenerateColumns = false;
+            this.dgvProcessList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProcessList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn});
+            this.dgvProcessList.DataSource = this.iDemonizedProcessBaseBindingSource;
+            this.dgvProcessList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProcessList.Location = new System.Drawing.Point(3, 3);
+            this.dgvProcessList.Name = "dgvProcessList";
+            this.dgvProcessList.ReadOnly = true;
+            this.dgvProcessList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvProcessList.Size = new System.Drawing.Size(858, 431);
+            this.dgvProcessList.TabIndex = 0;
+            this.dgvProcessList.DataSourceChanged += new System.EventHandler(this.dgvProcessList_DataSourceChanged_1);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iDemonizedProcessBaseBindingSource
+            // 
+            this.iDemonizedProcessBaseBindingSource.DataSource = typeof(PD.Api.DataTypes.IDemonizedProcessBase);
             // 
             // tabControl
             // 
@@ -197,65 +217,57 @@
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // iDemonizedProcessBaseBindingSource
-            // 
-            this.iDemonizedProcessBaseBindingSource.DataSource = typeof(PD.Api.DataTypes.IDemonizedProcessBase);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // cmProcess
             // 
             this.cmProcess.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startToolStripMenuItem,
             this.restartToolStripMenuItem,
             this.stopToolStripMenuItem,
-            this.infoToolStripMenuItem,
-            this.unlockToolStripMenuItem});
+            this.infoToolStripMenuItem});
             this.cmProcess.Name = "cmProcess";
-            this.cmProcess.Size = new System.Drawing.Size(153, 136);
+            this.cmProcess.Size = new System.Drawing.Size(153, 114);
             // 
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
             this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.startToolStripMenuItem.Text = "Start";
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.restartToolStripMenuItem.Text = "Restart";
+            this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
             this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stopToolStripMenuItem.Text = "Stop";
+            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.infoToolStripMenuItem.Text = "Info";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
+            // cmUnlock
+            // 
+            this.cmUnlock.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unlockToolStripMenuItem});
+            this.cmUnlock.Name = "cmUnlock";
+            this.cmUnlock.Size = new System.Drawing.Size(112, 26);
             // 
             // unlockToolStripMenuItem
             // 
             this.unlockToolStripMenuItem.Name = "unlockToolStripMenuItem";
-            this.unlockToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.unlockToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.unlockToolStripMenuItem.Text = "Unlock";
+            this.unlockToolStripMenuItem.Click += new System.EventHandler(this.unlockToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -270,21 +282,22 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "name + vers";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.Resize += new System.EventHandler(this.FormForTray_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.tabItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iDemonizedProcessBaseBindingSource)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iDemonizedProcessBaseBindingSource)).EndInit();
             this.cmProcess.ResumeLayout(false);
+            this.cmUnlock.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dgvProcessList;
         private System.Windows.Forms.TabPage tabItems;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -300,14 +313,16 @@
         private System.Windows.Forms.ToolStripMenuItem menuFile;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.BindingSource iDemonizedProcessBaseBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.ContextMenuStrip cmProcess;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip cmUnlock;
         private System.Windows.Forms.ToolStripMenuItem unlockToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dgvProcessList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
     }
 }
 

@@ -35,7 +35,7 @@ namespace PD.Api {
         Task Stop( int id, string key );
 
         Task Restart( int id, string key );
-
+        Task<bool> CheckPassword(int id, string key);
     }
 
     public interface IAdminApi {
