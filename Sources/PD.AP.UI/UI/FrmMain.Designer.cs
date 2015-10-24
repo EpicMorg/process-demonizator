@@ -48,18 +48,14 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabItems = new System.Windows.Forms.TabPage();
-            this.dgvProcessList = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRestarts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabLogs = new System.Windows.Forms.TabPage();
             this.txtLogs = new System.Windows.Forms.TextBox();
+            this.dgvProcessList = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabItems.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).BeginInit();
             this.tabLogs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -208,52 +204,6 @@
             this.tabItems.Text = "Items";
             this.tabItems.UseVisualStyleBackColor = true;
             // 
-            // dgvProcessList
-            // 
-            this.dgvProcessList.AllowUserToAddRows = false;
-            this.dgvProcessList.AllowUserToDeleteRows = false;
-            this.dgvProcessList.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvProcessList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProcessList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colID,
-            this.colName,
-            this.colPath,
-            this.colRestarts});
-            this.dgvProcessList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProcessList.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvProcessList.Location = new System.Drawing.Point(3, 3);
-            this.dgvProcessList.Name = "dgvProcessList";
-            this.dgvProcessList.ReadOnly = true;
-            this.dgvProcessList.Size = new System.Drawing.Size(858, 431);
-            this.dgvProcessList.TabIndex = 2;
-            // 
-            // colID
-            // 
-            this.colID.Frozen = true;
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            // 
-            // colName
-            // 
-            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colName.HeaderText = "Name";
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            // 
-            // colPath
-            // 
-            this.colPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPath.HeaderText = "Path";
-            this.colPath.Name = "colPath";
-            this.colPath.ReadOnly = true;
-            // 
-            // colRestarts
-            // 
-            this.colRestarts.HeaderText = "Restarts";
-            this.colRestarts.Name = "colRestarts";
-            this.colRestarts.ReadOnly = true;
-            // 
             // tabLogs
             // 
             this.tabLogs.Controls.Add(this.txtLogs);
@@ -278,6 +228,14 @@
             this.txtLogs.Size = new System.Drawing.Size(852, 425);
             this.txtLogs.TabIndex = 0;
             // 
+            // dgvProcessList
+            // 
+            this.dgvProcessList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProcessList.Location = new System.Drawing.Point(3, 6);
+            this.dgvProcessList.Name = "dgvProcessList";
+            this.dgvProcessList.Size = new System.Drawing.Size(855, 425);
+            this.dgvProcessList.TabIndex = 0;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,9 +255,9 @@
             this.menuStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabItems.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.tabLogs.ResumeLayout(false);
             this.tabLogs.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,16 +280,12 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabItems;
-        private System.Windows.Forms.DataGridView dgvProcessList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPath;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRestarts;
         private System.Windows.Forms.TabPage tabLogs;
         private System.Windows.Forms.TextBox txtLogs;
         private System.Windows.Forms.ToolStripMenuItem smenuHelp;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem smenuLicense;
+        private System.Windows.Forms.DataGridView dgvProcessList;
     }
 }
 

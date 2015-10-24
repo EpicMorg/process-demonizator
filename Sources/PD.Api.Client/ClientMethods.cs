@@ -42,7 +42,7 @@ namespace PD.Api.Client
         }
 
         public async Task<IRunningDemonizedProcess> Get( int id, string key ) {
-            var resp = await _client.GetAsync( $"{id}").ConfigureAwait(false);
+            var resp = await _client.GetAsync( $"{id}?key={key}").ConfigureAwait(false);
             ThrowOnNonSuccess(resp);
             var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
             var obj = JsonConvert.DeserializeObject<RunningDemonizedProcess>( ret );

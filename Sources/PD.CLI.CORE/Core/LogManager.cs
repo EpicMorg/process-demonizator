@@ -27,7 +27,7 @@ namespace PD.CLI.CORE.Core {
 
         public void Log( string s ) {
             _repository.Push( s );
-            Console.WriteLine( $"{DateTime.Now.ToString("G")}: {s}");
+            Console.Error.WriteLine( $"{DateTime.Now.ToString("G")}: {s}");
         }
     }
 

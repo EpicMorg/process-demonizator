@@ -78,6 +78,9 @@ namespace PD.CL.UI.UI {
                     _keys.Add( source.Id, form.Password );
                     UpdateRowMenu( row );
                 }
+                else {
+                    MessageBox.Show( "Wrong key", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                }
             }
         }
 
@@ -111,31 +114,15 @@ namespace PD.CL.UI.UI {
             await _api.Process.Stop( source.Id, _keys[ source.Id ] ).ConfigureAwait( true );
         }
 
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e) {
-            MessageBox.Show(
-                @"Fuck you 
-Fuck the plane you flew in on 
-Fuck them shoes 
-Fuck them socks with the belt on it 
-Fuck your gay ass fairy faggot accent 
-Fuck them cheap ass cigars 
-Fuck your yuck mouth teeth 
-Fuck your hair piece 
-Fuck your chocolate 
-Fuck Guy Ritchie 
-Fuck Prince William
-Fuck the Queen 
-This is America 
-My President is black and my lambo is blue nigga
-Now get the fuck outta my hotel room 
-And if I see you in the street 
-I'm slapping the shit out of you",
-                "Not implemented",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1,
-                MessageBoxOptions.DefaultDesktopOnly,
-                false );
+        private async void infoToolStripMenuItem_Click(object sender, EventArgs e) {
+            var row = GetMenuRow(sender);
+            var source = row?.DataBoundItem as DemonizedProcessBase;
+            if (source == null) return;
+            var pi = await _api.Process.Get( source.Id, _keys[ source.Id ] ).ConfigureAwait( true );
+            using ( var frm = new frmProcessInfo() ) {
+                frm.Process = pi;
+                frm.ShowDialog();
+            }
         }
     }
 
