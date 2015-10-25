@@ -10,6 +10,9 @@ namespace process_demonizator.UI {
             Text = $@"Connect to server :: {InfoHelper.NameVersion}";
         }
 
+        public string Server => txtServer.Text;
+        public string Key => txtKey.Text;
+
     }
 
 }

@@ -1,26 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PD.Api;
 using PD.Api.DataTypes;
 using PD.CLI.CORE.Core;
-using PD.CLI.CORE.Helpers;
 
 namespace PD.CLI.CORE.Api {
-
-    public class AdminApi : IAdminApi {
-
-        public AdminApi( IAdminProcessMethods process, ISettingsMethods settings, ILogMethods log ) {
-            Process = process;
-            Settings = settings;
-            Log = log;
-        }
-
-        public IAdminProcessMethods Process { get; }
-        public ISettingsMethods Settings { get; }
-        public ILogMethods Log { get; }
-
-    }
 
     public class AdminProcessMethods : IAdminProcessMethods {
 
@@ -41,6 +26,7 @@ namespace PD.CLI.CORE.Api {
                 throw new ArgumentNullException(nameof( model ));
             }
             var existing = await _processRepository.Get( model.Id ).ConfigureAwait( false );
+            await _processRepository.Edit(model).ConfigureAwait( false );
             //todo: update model
         }
 
@@ -59,46 +45,6 @@ namespace PD.CLI.CORE.Api {
         public async Task Show( int id ) => await(await _processRepository.Get(id).ConfigureAwait(false)).Show().ConfigureAwait(false);
 
         public async Task Hide( int id ) => await ( await _processRepository.Get( id ).ConfigureAwait( false ) ).Hide().ConfigureAwait( false );
-
-    }
-
-    public class SettingsMethods : ISettingsMethods {
-
-        private ISettingsManager _repository;
-
-        public SettingsMethods( ISettingsManager repository ) {
-            _repository = repository;
-        }
-
-
-        public async Task<ISettings> GetSettings() => _repository.Settings;
-
-        public async Task SetSettings( ISettings settings ) {
-            if ( settings == null ) {
-                throw new ArgumentNullException();
-            }
-            var existing = _repository.Settings;
-            MappingHelper.Instance.Map<ISettings, ISettingsPassword>( settings, existing );
-            _repository.Settings = existing;
-        }
-
-        public async Task SetKey( string key ) {
-            var settings = _repository.Settings;
-            settings.Password = key;
-            _repository.Settings = settings;
-        }
-
-    }
-
-    public class LogMethods : ILogMethods {
-
-        private ILogManager _repository;
-
-
-        public LogMethods( ILogManager repository ) { _repository = repository; }
-
-
-        public async Task<IEnumerable<string>> Show(int tailCount) => await _repository.Show(tailCount).ConfigureAwait(false);
 
     }
 

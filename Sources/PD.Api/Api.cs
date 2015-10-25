@@ -86,6 +86,8 @@ namespace PD.Api {
 
         Task SetKey( string key );
 
+        Task<bool> CheckKey( string key );
+
     }
 
 }

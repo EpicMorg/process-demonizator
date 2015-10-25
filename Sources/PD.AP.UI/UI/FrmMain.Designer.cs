@@ -48,14 +48,14 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabItems = new System.Windows.Forms.TabPage();
+            this.dgvProcessList = new System.Windows.Forms.DataGridView();
             this.tabLogs = new System.Windows.Forms.TabPage();
             this.txtLogs = new System.Windows.Forms.TextBox();
-            this.dgvProcessList = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabItems.SuspendLayout();
-            this.tabLogs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).BeginInit();
+            this.tabLogs.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -85,6 +85,7 @@
             // 
             // smenuAddNewItem
             // 
+            this.smenuAddNewItem.Enabled = false;
             this.smenuAddNewItem.Name = "smenuAddNewItem";
             this.smenuAddNewItem.Size = new System.Drawing.Size(170, 22);
             this.smenuAddNewItem.Text = "Add new item";
@@ -124,8 +125,9 @@
             // 
             // smenuSettions
             // 
+            this.smenuSettions.Enabled = false;
             this.smenuSettions.Name = "smenuSettions";
-            this.smenuSettions.Size = new System.Drawing.Size(116, 22);
+            this.smenuSettions.Size = new System.Drawing.Size(152, 22);
             this.smenuSettions.Text = "Settings";
             this.smenuSettions.Click += new System.EventHandler(this.smenuSettions_Click);
             // 
@@ -187,6 +189,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.tabItems);
             this.tabControl.Controls.Add(this.tabLogs);
+            this.tabControl.Enabled = false;
             this.tabControl.Location = new System.Drawing.Point(12, 27);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -203,6 +206,14 @@
             this.tabItems.TabIndex = 0;
             this.tabItems.Text = "Items";
             this.tabItems.UseVisualStyleBackColor = true;
+            // 
+            // dgvProcessList
+            // 
+            this.dgvProcessList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProcessList.Location = new System.Drawing.Point(3, 6);
+            this.dgvProcessList.Name = "dgvProcessList";
+            this.dgvProcessList.Size = new System.Drawing.Size(855, 425);
+            this.dgvProcessList.TabIndex = 0;
             // 
             // tabLogs
             // 
@@ -228,14 +239,6 @@
             this.txtLogs.Size = new System.Drawing.Size(852, 425);
             this.txtLogs.TabIndex = 0;
             // 
-            // dgvProcessList
-            // 
-            this.dgvProcessList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProcessList.Location = new System.Drawing.Point(3, 6);
-            this.dgvProcessList.Name = "dgvProcessList";
-            this.dgvProcessList.Size = new System.Drawing.Size(855, 425);
-            this.dgvProcessList.TabIndex = 0;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,9 +258,9 @@
             this.menuStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.tabLogs.ResumeLayout(false);
             this.tabLogs.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

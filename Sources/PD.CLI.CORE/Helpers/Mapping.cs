@@ -18,6 +18,7 @@ namespace PD.CLI.CORE.Helpers
             Mapper.CreateMap<ISettingsPassword, ISettingsPassword>();
 
             Mapper.CreateMap<IPasswordedDemonizedProcess, InternalDemonizedProcess>().ConstructUsingServiceLocator();
+            Mapper.CreateMap<IPasswordedDemonizedProcess, IInternalDemonizedProcess>();
 
             Mapper.CreateMap<InternalDemonizedProcess, PasswordedDemonizedProcess>();
             Mapper.CreateMap<InternalDemonizedProcess, DemonizedProcessBase>();

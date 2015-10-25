@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PD.Api;
@@ -6,16 +6,6 @@ using PD.Api.DataTypes;
 using PD.CLI.CORE.Core;
 
 namespace PD.CLI.CORE.Api {
-
-    public class ClientApi : IClientApi {
-
-        public ClientApi( IClientProcessMethods process ) {
-            Process = process;
-        }
-
-        public IClientProcessMethods Process { get; }
-
-    }
 
     public class ClientProcessMethods : IClientProcessMethods {
 

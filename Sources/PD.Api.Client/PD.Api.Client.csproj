@@ -44,7 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientMethods.cs" />
+    <Compile Include="Admin\AdminApi.cs" />
+    <Compile Include="Admin\AdminProcessMethods.cs" />
+    <Compile Include="Admin\LogMethods.cs" />
+    <Compile Include="Admin\SettingsMethods.cs" />
+    <Compile Include="Client\ClientApi.cs" />
+    <Compile Include="Client\ClientProcessMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +61,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

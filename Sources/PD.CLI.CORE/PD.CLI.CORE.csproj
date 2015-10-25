@@ -167,11 +167,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\AdminApi.cs" />
-    <Compile Include="Api\ClientApi.cs" />
+    <Compile Include="Api\Admin\AdminApi.cs" />
+    <Compile Include="Api\Admin\AdminProcessMethods.cs" />
+    <Compile Include="Api\Admin\LogMethods.cs" />
+    <Compile Include="Api\Admin\SettingsMethods.cs" />
+    <Compile Include="Api\Client\ClientApi.cs" />
+    <Compile Include="Api\Client\ClientProcessMethods.cs" />
     <Compile Include="Api\InternalDemonizedProcess.cs" />
-    <Compile Include="Controllers\AdminProcess.cs" />
-    <Compile Include="Controllers\AuthorizeController.cs" />
+    <Compile Include="Controllers\Admin\AdminProcess.cs" />
+    <Compile Include="Controllers\Admin\AuthorizeController.cs" />
     <Compile Include="Controllers\ClientProcess.cs" />
     <Compile Include="Helpers\DataStorage.cs" />
     <Compile Include="Helpers\DI.cs" />

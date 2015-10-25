@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -6,21 +6,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PD.Api.DataTypes;
 
-namespace PD.Api.Client
-{
-    public class ClientApi : IClientApi
-    {
+namespace PD.Api.Client {
 
-        internal readonly string _server;
-
-        public ClientApi( string server ) {
-            _server = server;
-            Process = new ClientProcessMethods( this );
-        }
-
-        public IClientProcessMethods Process { get; }
-
-    }
     public class ClientProcessMethods : IClientProcessMethods {
 
         private readonly ClientApi _api;
@@ -68,4 +55,5 @@ namespace PD.Api.Client
         }
 
     }
+
 }
