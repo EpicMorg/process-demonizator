@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace PD.Api.Client.Admin {
+namespace PD.Api.Client {
 
     public class LogMethods : ILogMethods {
 
@@ -13,9 +11,7 @@ namespace PD.Api.Client.Admin {
 
         public LogMethods( AdminApi api ) {
             _api = api;
-            _client = new HttpClient(new HttpClientHandler()) { BaseAddress = new Uri(new Uri(_api._server), "Admin/Process/") };
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _client = MethodsHelper.CreateClient( api._server, "Admin/Process/" );
         }
 
         public Task<IEnumerable<string>> Show( int tailCount ) { throw new System.NotImplementedException(); }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using PD.Api.DataTypes;
 
-namespace PD.Api.Client.Admin {
+namespace PD.Api.Client {
 
     public class SettingsMethods : ISettingsMethods {
 
@@ -13,10 +11,7 @@ namespace PD.Api.Client.Admin {
 
         public SettingsMethods( AdminApi api ) {
             _api = api;
-
-            _client = new HttpClient(new HttpClientHandler()) { BaseAddress = new Uri(new Uri(_api._server), "Admin/Settings/") };
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _client = MethodsHelper.CreateClient( api._server, "Admin/Settings/" );
         }
 
         public Task<ISettings> GetSettings() { throw new System.NotImplementedException(); }

@@ -174,8 +174,10 @@
     <Compile Include="Api\Client\ClientApi.cs" />
     <Compile Include="Api\Client\ClientProcessMethods.cs" />
     <Compile Include="Api\InternalDemonizedProcess.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\Admin\AdminProcess.cs" />
-    <Compile Include="Controllers\Admin\AuthorizeController.cs" />
+    <Compile Include="Controllers\Admin\Log.cs" />
+    <Compile Include="Controllers\Admin\SettingsController.cs" />
     <Compile Include="Controllers\ClientProcess.cs" />
     <Compile Include="Helpers\DataStorage.cs" />
     <Compile Include="Helpers\DI.cs" />

@@ -1,12 +1,11 @@
-﻿namespace PD.Api.Client
-{
-    public class ClientApi : IClientApi
-    {
+﻿namespace PD.Api.Client {
 
-        internal readonly string _server;
+    public class ClientApi : IClientApi {
+
+        public string Server { get; }
 
         public ClientApi( string server ) {
-            _server = server;
+            Server = server;
             Process = new ClientProcessMethods( this );
         }
 

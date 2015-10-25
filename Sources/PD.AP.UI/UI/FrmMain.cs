@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PD.Api;
-using PD.Api.Client.Admin;
+using PD.Api.Client;
 using PD.UI.Shared;
 
 namespace process_demonizator.UI {

@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PD.Api.DataTypes;
+using static PD.Api.Client.MethodsHelper;
 
 namespace PD.Api.Client {
 
@@ -15,44 +14,28 @@ namespace PD.Api.Client {
 
         internal ClientProcessMethods( ClientApi api ) {
             _api = api;
-            _client = new HttpClient( new HttpClientHandler() ) { BaseAddress = new Uri( new Uri( _api._server ), "Client/Process/" ) };
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _client = CreateClient( api.Server, "Client/Process/" );
         }
 
-        public async Task<IEnumerable<IDemonizedProcessBase>> List() {
-            var resp = await _client.GetAsync( "" ).ConfigureAwait( false );
+        private async Task<T> Get<T>( string requestUri ) {
+            var resp = await _client.GetAsync( requestUri ).ConfigureAwait( false );
             ThrowOnNonSuccess( resp );
             var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait( false );
-            var obj = JsonConvert.DeserializeObject<DemonizedProcessBase[]>( ret );
+            var obj = JsonConvert.DeserializeObject<T>( ret );
             return obj;
         }
 
-        public async Task<IRunningDemonizedProcess> Get( int id, string key ) {
-            var resp = await _client.GetAsync( $"{id}?key={key}").ConfigureAwait(false);
-            ThrowOnNonSuccess(resp);
-            var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var obj = JsonConvert.DeserializeObject<RunningDemonizedProcess>( ret );
-            return obj;
-        }
+        public async Task<IEnumerable<IDemonizedProcessBase>> List() => await Get<DemonizedProcessBase[]>( "" ).ConfigureAwait( false );
 
-        public async Task Start( int id, string key ) => await PostKey( id, key, "Start" ).ConfigureAwait( false );
+        public async Task<IRunningDemonizedProcess> Get( int id, string key ) => await Get<RunningDemonizedProcess>( $"{id}?key={key}" ).ConfigureAwait( true );
 
-        public async Task Stop( int id, string key ) => await PostKey(id, key, "Stop").ConfigureAwait(false);
+        public async Task Start( int id, string key ) => await _client.PostClientKey( id, key, "Start" ).ConfigureAwait( false );
 
-        public async Task Restart( int id, string key ) => await PostKey(id, key, "Restart").ConfigureAwait(false);
+        public async Task Stop( int id, string key ) => await _client.PostClientKey( id, key, "Stop" ).ConfigureAwait( false );
 
-        public async Task<bool> CheckPassword( int id, string key) => bool.Parse(await PostKey(id, key, "CheckPassword").ConfigureAwait(false));
+        public async Task Restart( int id, string key ) => await _client.PostClientKey( id, key, "Restart" ).ConfigureAwait( false );
 
-        private static void ThrowOnNonSuccess(HttpResponseMessage resp) { if (!resp.IsSuccessStatusCode) throw new Exception($"Bad server response status code({resp.StatusCode})"); }
-        private async Task<string> PostKey(int id, string key, string action) {
-            var content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("key", key) });
-            //Client/Process/2/CheckPassword
-            var resp = await _client.PostAsync($"{id}/{action}", content).ConfigureAwait(false);
-            ThrowOnNonSuccess(resp);
-            var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return ret;
-        }
+        public async Task<bool> CheckPassword( int id, string key ) => bool.Parse( await _client.PostClientKey( id, key, "CheckPassword" ).ConfigureAwait( false ) );
 
     }
 
