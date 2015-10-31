@@ -1,50 +1,49 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using PD.Api.DataTypes;
-using static PD.Api.Client.MethodsHelper;
+using KVP = System.Collections.Generic.KeyValuePair<string, string>;
+
 namespace PD.Api.Client {
 
-    public class AdminProcessMethods : IAdminProcessMethods {
+    public class AdminProcessMethods : MethodsBase, IAdminProcessMethods {
 
         private readonly AdminApi _api;
-        private HttpClient _client;
         private string key => _api.Key;
-        public AdminProcessMethods( AdminApi api ) {
-            _api = api;
-            _client = CreateClient( _api._server, "Admin/Process/" );
-        }
 
+        public AdminProcessMethods( AdminApi api ) : base( api._server, "Admin/Process/" ) { _api = api; }
 
-        public async Task<IEnumerable<IDemonizedProcessBase>> List() => await GetWithKey<RunningDemonizedProcess[]>("").ConfigureAwait(false);
+        public async Task<IEnumerable<IDemonizedProcessBase>> List() => await GetWithKey<RunningDemonizedProcess[]>( "", key ).ConfigureAwait( false );
 
-        public async Task<IEnumerable<IRunningDemonizedProcess>> ListFull() => await GetWithKey<RunningDemonizedProcess[]>("ListFull").ConfigureAwait(false);
+        public async Task<IEnumerable<IRunningDemonizedProcess>> ListFull() => await GetWithKey<RunningDemonizedProcess[]>( "ListFull", key ).ConfigureAwait( false );
 
-        public Task Edit( IPasswordedDemonizedProcess model ) { throw new System.NotImplementedException(); }
+        public async Task<IRunningDemonizedProcess> Get( int id ) => await GetWithKey<RunningDemonizedProcess>( $"{id}", key ).ConfigureAwait( false );
 
-        public Task<int> Create( IPasswordedDemonizedProcess model ) { throw new System.NotImplementedException(); }
+        public async Task Start( int id ) => await PostRaw( id, key, "Start" ).ConfigureAwait( false );
 
-        public async Task<IRunningDemonizedProcess> Get(int id) => await GetWithKey<RunningDemonizedProcess>( $"{id}" ).ConfigureAwait( false );
+        public async Task Stop( int id ) => await PostRaw( id, key, "Stop" ).ConfigureAwait( false );
 
-        private async Task<T> GetWithKey<T>( string str ) {
-            var resp = await _client.GetAsync( $"{str}?key={key}" ).ConfigureAwait( false );
-            ThrowOnNonSuccess( resp );
-            var ret = await resp.Content.ReadAsStringAsync().ConfigureAwait( false );
-            return JsonConvert.DeserializeObject<T>(ret);
-        }
+        public async Task Restart( int id ) => await PostRaw( id, key, "Restart" ).ConfigureAwait( false );
 
-        public async Task Start( int id ) => await _client.PostClientKey(id, key, "Start").ConfigureAwait(false);
+        public async Task Delete( int id ) => await PostRaw( id, key, "Delete" ).ConfigureAwait( false );
 
-        public async Task Stop( int id ) => await _client.PostClientKey(id, key, "Stop").ConfigureAwait(false);
+        public async Task Show( int id ) => await PostRaw( id, key, "Show" ).ConfigureAwait( false );
 
-        public async Task Restart(int id) => await _client.PostClientKey(id, key, "Restart").ConfigureAwait(false);
+        public async Task Hide( int id ) => await PostRaw( id, key, "Hide" ).ConfigureAwait( false );
 
-        public async Task Delete(int id) => await _client.PostClientKey(id, key, "Delete").ConfigureAwait(false);
+        public async Task Edit( IPasswordedDemonizedProcess model ) => await GetResponse( await _client.PostAsync( GetKeyQuery( "", key ), ToContent( model ) ).ConfigureAwait( false ) ).ConfigureAwait( false );
 
-        public async Task Show(int id) => await _client.PostClientKey(id, key, "Show").ConfigureAwait(false);
+        public async Task<int> Create( IPasswordedDemonizedProcess model ) => int.Parse( await GetResponse( await _client.PostAsync( GetKeyQuery( "", key ), ToContent( model ) ).ConfigureAwait( false ) ).ConfigureAwait( false ) );
 
-        public async Task Hide(int id) => await _client.PostClientKey(id, key, "Hide").ConfigureAwait(false);
+        private static FormUrlEncodedContent ToContent( IPasswordedDemonizedProcess model ) => new FormUrlEncodedContent(
+            new[] { 
+                new KVP( nameof( model.Key ), model.Key ), new KVP( nameof( model.Arguments ), model.Arguments ), new KVP( nameof( model.Name ), model.Name ),
+                new KVP( nameof( model.Path ), model.Path ), new KVP( nameof( model.Id ), model.Id.ToString( CultureInfo.InvariantCulture ) ),
+                new KVP( nameof( model.Autorestart ), model.Autorestart.ToString( CultureInfo.InvariantCulture ) ),
+                new KVP( nameof( model.Priority ), model.Priority.ToString( CultureInfo.InvariantCulture ) ),
+                new KVP( nameof( model.HideOnStart ), model.HideOnStart.ToString( CultureInfo.InvariantCulture ) )
+            } );
 
     }
 

@@ -42,7 +42,7 @@ namespace PD.CLI.CORE.Controllers
         }
         [HttpPost]
         [Route("CheckKey")]
-        public async Task<bool> CheckKey( string key ) => await _api.Settings.CheckKey( key ).ConfigureAwait( false );
+        public async Task<bool> CheckKey([FromUri] string key ) => await _api.Settings.CheckKey( key ).ConfigureAwait( false );
 
     }
 }

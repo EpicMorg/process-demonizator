@@ -30,45 +30,47 @@ namespace PD.CLI.CORE.Controllers {
 
         [HttpGet]
         [Route( "{id}" )]
-        public async Task<IRunningDemonizedProcess> Get( int id, string key ) {
+        public async Task<IRunningDemonizedProcess> Get( int id, [FromUri] string key ) {
             _log.Log($"Showing {id}[{RemoteIp}]");
             return await _api.Process.Get( id, key).ConfigureAwait( false );
         }
 
         [HttpPost]
         [Route( "{id}/Start" )]
-        public async Task Start( [FromUri] int id, [FromBody] KeyWrapper v ) {
+        public async Task Start( [FromUri] int id, [FromUri] string key ) {
             _log.Log($"Starting {id}[{RemoteIp}]");
-            await _api.Process.Start( id, v.Key ).ConfigureAwait( false );
+            await _api.Process.Start( id, key).ConfigureAwait( false );
         }
 
         [HttpPost]
         [Route( "{id}/Stop" )]
-        public async Task Stop( [FromUri] int id, [FromBody] KeyWrapper v ) {
+        public async Task Stop( [FromUri] int id, [FromUri] string key)
+        {
             _log.Log($"Stopping {id}[{RemoteIp}]");
-            await _api.Process.Stop( id, v.Key ).ConfigureAwait( false );
+            await _api.Process.Stop( id, key).ConfigureAwait( false );
         }
 
         [HttpPost]
         [Route( "{id}/Restart" )]
-        public async Task Restart( [FromUri] int id, [FromBody] KeyWrapper v ) {
+        public async Task Restart( [FromUri] int id, [FromUri] string key)
+        {
             _log.Log($"Restarting {id}[{RemoteIp}]");
-            await _api.Process.Restart( id, v.Key ).ConfigureAwait( false );
+            await _api.Process.Restart( id, key).ConfigureAwait( false );
         }
 
         [HttpPost]
         [Route( "{id}/CheckPassword" )]
-        public async Task<bool> CheckPassword( [FromUri] int id, [FromBody] KeyWrapper v ) {
+        public async Task<bool> CheckPassword( [FromUri] int id, [FromUri] string key ) {
             _log.Log( $"Checking password for {id}[{RemoteIp}]" );
-            return await _api.Process.CheckPassword( id, v.Key ).ConfigureAwait( false );
+            return await _api.Process.CheckPassword( id, key).ConfigureAwait( false );
         }
     }
     // FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK
     // http://blog.codenamed.nl/2015/05/12/why-your-frombody-parameter-is-always-null/
-    public class KeyWrapper {
+    //public class KeyWrapper {
 
-        [HttpBindRequired]
-        public string Key { get; set; }
+    //    [HttpBindRequired]
+    //    public string Key { get; set; }
 
-    }
+    //}
 }

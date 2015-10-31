@@ -11,7 +11,7 @@ namespace PD.CLI.CORE {
         private static void Main(string[] args)
         {
             Di.Initialize();
-            var prog = new Program(Di.Get<ILogManager>(), new FileConfiguration() { Url = "http://localhost:31337" });
+            var prog = new Program(Di.Get<ILogManager>(), new FileConfiguration() { Url = "http://192.168.0.106:31337" });
             prog.Start();
         }
 

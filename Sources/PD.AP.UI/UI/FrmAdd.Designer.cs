@@ -35,6 +35,7 @@
             this.txtPathToExe = new System.Windows.Forms.TextBox();
             this.lblArgs = new System.Windows.Forms.Label();
             this.lblPathToExe = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
             this.bgxNull1 = new System.Windows.Forms.GroupBox();
             this.txtPassword = new System.Windows.Forms.MaskedTextBox();
             this.cmPriority = new System.Windows.Forms.ComboBox();
@@ -44,7 +45,7 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblItemName = new System.Windows.Forms.Label();
             this.txtItemName = new System.Windows.Forms.TextBox();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.ofdPath = new System.Windows.Forms.OpenFileDialog();
             this.bgxNull2.SuspendLayout();
             this.bgxNull1.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +72,7 @@
             this.btnBrowse.TabIndex = 1;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // txtArgs
             // 
@@ -105,6 +107,17 @@
             this.lblPathToExe.TabIndex = 0;
             this.lblPathToExe.Text = "Path to executable:";
             // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(292, 285);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 2;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
             // bgxNull1
             // 
             this.bgxNull1.Controls.Add(this.txtPassword);
@@ -136,11 +149,6 @@
             // 
             this.cmPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmPriority.FormattingEnabled = true;
-            this.cmPriority.Items.AddRange(new object[] {
-            "Realtime (WinAPI)",
-            "Hight (WinAPI)",
-            "Normal (WinAPI)",
-            "Low (WinAPI)"});
             this.cmPriority.Location = new System.Drawing.Point(179, 32);
             this.cmPriority.Name = "cmPriority";
             this.cmPriority.Size = new System.Drawing.Size(170, 21);
@@ -204,20 +212,12 @@
             this.txtItemName.Size = new System.Drawing.Size(167, 20);
             this.txtItemName.TabIndex = 0;
             // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(286, 285);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 2;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
             // FrmAdd
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 320);
+            this.ClientSize = new System.Drawing.Size(374, 320);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.bgxNull1);
             this.Controls.Add(this.bgxNull2);
@@ -240,7 +240,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox bgxNull2;
-        private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox txtArgs;
         private System.Windows.Forms.TextBox txtPathToExe;
         private System.Windows.Forms.Label lblArgs;
@@ -255,5 +254,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.MaskedTextBox txtPassword;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.OpenFileDialog ofdPath;
     }
 }

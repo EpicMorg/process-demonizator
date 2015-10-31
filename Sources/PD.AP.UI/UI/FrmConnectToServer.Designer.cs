@@ -66,14 +66,16 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(286, 20);
             this.txtServer.TabIndex = 4;
+            this.txtServer.Text = "http://192.168.0.106:31337";
             // 
-            // txtPassword
+            // txtKey
             // 
             this.txtKey.Location = new System.Drawing.Point(6, 71);
             this.txtKey.Name = "txtKey";
             this.txtKey.PasswordChar = '卐';
             this.txtKey.Size = new System.Drawing.Size(287, 20);
             this.txtKey.TabIndex = 3;
+            this.txtKey.Text = "hitler";
             // 
             // lblPl
             // 

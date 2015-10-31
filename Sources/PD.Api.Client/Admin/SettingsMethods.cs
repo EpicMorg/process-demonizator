@@ -1,27 +1,26 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using PD.Api.DataTypes;
 
 namespace PD.Api.Client {
 
-    public class SettingsMethods : ISettingsMethods {
+    public class SettingsMethods : MethodsBase, ISettingsMethods {
 
         private readonly AdminApi _api;
-        private HttpClient _client;
 
-        public SettingsMethods( AdminApi api ) {
-            _api = api;
-            _client = MethodsHelper.CreateClient( api._server, "Admin/Settings/" );
+        public SettingsMethods( AdminApi api ) : base( api._server, "Admin/Settings/" ) { _api = api; }
+
+        public async Task<bool> CheckKey( string key ) => bool.Parse( await PostRaw("CheckKey", key ).ConfigureAwait( false ) );
+
+        public async Task<ISettings> GetSettings() => await GetWithKey<Settings>( "GetSettings", _api.Key ).ConfigureAwait( false );
+
+
+        public async Task SetKey( string newkey ) => await GetResponse( await _client.PostAsync( GetKeyQuery( "SetKey", _api.Key ), new FormUrlEncodedContent( new[] { new KeyValuePair<string, string>( "newkey", newkey ) } ) ).ConfigureAwait( false ) ).ConfigureAwait( false );
+
+        public async Task SetSettings( ISettings settings ) {
+            
         }
-
-        public Task<ISettings> GetSettings() { throw new System.NotImplementedException(); }
-
-        public Task SetSettings( ISettings settings ) { throw new System.NotImplementedException(); }
-
-        public Task SetKey( string key ) { throw new System.NotImplementedException(); }
-
-        public Task<bool> CheckKey( string key ) { throw new System.NotImplementedException(); }
-
     }
 
 }

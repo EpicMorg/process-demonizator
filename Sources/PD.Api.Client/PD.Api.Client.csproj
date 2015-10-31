@@ -47,7 +47,7 @@
     <Compile Include="Admin\AdminApi.cs" />
     <Compile Include="Admin\AdminProcessMethods.cs" />
     <Compile Include="Admin\LogMethods.cs" />
-    <Compile Include="MethodsHelper.cs" />
+    <Compile Include="MethodsBase.cs" />
     <Compile Include="Admin\SettingsMethods.cs" />
     <Compile Include="Client\ClientApi.cs" />
     <Compile Include="Client\ClientProcessMethods.cs" />

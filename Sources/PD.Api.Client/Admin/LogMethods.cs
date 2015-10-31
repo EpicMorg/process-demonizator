@@ -1,20 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PD.Api.Client {
 
-    public class LogMethods : ILogMethods {
+    public class LogMethods : MethodsBase, ILogMethods {
 
         private readonly AdminApi _api;
-        private HttpClient _client;
 
-        public LogMethods( AdminApi api ) {
-            _api = api;
-            _client = MethodsHelper.CreateClient( api._server, "Admin/Process/" );
-        }
+        public LogMethods( AdminApi api ) : base( api._server, "Admin/Log/" ) { _api = api; }
 
-        public Task<IEnumerable<string>> Show( int tailCount ) { throw new System.NotImplementedException(); }
+        public async Task<IEnumerable<string>> Show( int tailCount ) => await GetWithKey<string[]>($"{tailCount}", _api.Key).ConfigureAwait(false);
 
     }
 

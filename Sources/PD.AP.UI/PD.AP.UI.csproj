@@ -99,6 +99,7 @@
     <EmbeddedResource Include="UI\FrmConnectToServer.resx">
       <DependentUpon>FrmConnectToServer.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\PD.Api.DataTypes.RunningDemonizedProcess.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
