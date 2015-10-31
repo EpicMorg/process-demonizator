@@ -21,7 +21,6 @@ namespace process_demonizator.UI {
         }
 
         public FrmAdd() {
-            //InitializeComponent();
             InitializeComponent();
             Text = @"Add new item :: " + InfoHelper.NameVersion;
             _cmPriorityOnSelectedValueChanged = ( sender, value ) => {

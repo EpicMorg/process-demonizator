@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,10 +23,20 @@ namespace process_demonizator.UI {
             dgvProcessList.AutoGenerateColumns = false;
         }
         
-        private static RunningDemonizedProcess GetMenuRow( object o )
-            =>
-                ( ( ( ( o as ToolStripItem )?.Owner as ContextMenuStrip )?.SourceControl as DataGridView )?.SelectedRows?.OfType<DataGridViewRow>()?.FirstOrDefault()?.DataBoundItem
-                  as RunningDemonizedProcess );
+        private RunningDemonizedProcess GetMenuRow( object o ) {
+            //var toolStripItem = o as ToolStripItem;
+            //var toolStrip = toolStripItem?.Owner;
+            //var contextMenuStrip = toolStrip as ContextMenuStrip;
+            //var sourceControl = contextMenuStrip?.SourceControl;
+            //var dataGridView = sourceControl as DataGridView;
+            var dataGridView = dgvProcessList;
+            var dataGridViewSelectedRowCollection = dataGridView?.SelectedRows;
+            var dataGridViewRows = dataGridViewSelectedRowCollection?.OfType<DataGridViewRow>();
+            var dataGridViewRow = dataGridViewRows?.FirstOrDefault();
+            var dataBoundItem = dataGridViewRow?.DataBoundItem;
+            var runningDemonizedProcess = dataBoundItem as RunningDemonizedProcess;
+            return runningDemonizedProcess;
+        }
 
         private void _notifyIcon_MouseClick( object sender, MouseEventArgs e ) {
             if ( e.Button != MouseButtons.Left ) return;

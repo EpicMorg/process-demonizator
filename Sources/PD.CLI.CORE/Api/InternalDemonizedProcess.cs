@@ -110,18 +110,20 @@ namespace PD.CLI.CORE.Api {
         }
 
         private async Task StartInternal() {
-            process = new Process {
-                StartInfo = {
+            EventHandler processOnExited = ( a, b ) => _event.Release();
+            try {
+                Restarts = 0;
+
+                process = new Process
+                {
+                    StartInfo = {
                     Arguments = Arguments,
                     FileName = Path,
                     CreateNoWindow = HideOnStart,
                     WindowStyle = HideOnStart ? ProcessWindowStyle.Hidden : ProcessWindowStyle.Normal,
                     UseShellExecute = false,
                 }
-            };
-            EventHandler processOnExited = ( a, b ) => _event.Release();
-            try {
-                Restarts = 0;
+                };
                 process.Exited += processOnExited;
                 var i = 0;
                 do {
@@ -134,6 +136,7 @@ namespace PD.CLI.CORE.Api {
                         _log.Log( $"Exited process [{Id}/{Name}] : {Path} {Arguments}" );
                     }
                     catch ( Exception ex ) {
+                        process = null;
                         _log.Log( $"Failed to start [{Id}/{Name}] : {Path} {Arguments}\r\nException:{ex.Message}" );
                         _event.Release();
                     }
