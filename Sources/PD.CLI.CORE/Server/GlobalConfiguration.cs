@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PD.CLI.CORE.Server {
 
@@ -19,6 +20,7 @@ namespace PD.CLI.CORE.Server {
                     }
                 }
             };
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter());
             config.Formatters.Remove( config.Formatters.XmlFormatter );
             config.MapHttpAttributeRoutes();
             config.EnsureInitialized();

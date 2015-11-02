@@ -75,7 +75,7 @@
             this.txtKey.PasswordChar = '卐';
             this.txtKey.Size = new System.Drawing.Size(287, 20);
             this.txtKey.TabIndex = 3;
-            this.txtKey.Text = "hitler";
+            this.txtKey.Text = "12345";
             // 
             // lblPl
             // 

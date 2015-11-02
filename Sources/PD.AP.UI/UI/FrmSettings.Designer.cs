@@ -29,38 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettings));
-            this.lblCheckTimes = new System.Windows.Forms.Label();
             this.gbxOptions = new System.Windows.Forms.GroupBox();
             this.numMaxRestarts = new System.Windows.Forms.NumericUpDown();
-            this.numCheckTimes = new System.Windows.Forms.NumericUpDown();
             this.lblMaxRestarts = new System.Windows.Forms.Label();
             this.gbxOtherOptions = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxRestarts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCheckTimes)).BeginInit();
             this.gbxOtherOptions.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblCheckTimes
-            // 
-            this.lblCheckTimes.AutoSize = true;
-            this.lblCheckTimes.Location = new System.Drawing.Point(6, 21);
-            this.lblCheckTimes.Name = "lblCheckTimes";
-            this.lblCheckTimes.Size = new System.Drawing.Size(108, 13);
-            this.lblCheckTimes.TabIndex = 0;
-            this.lblCheckTimes.Text = "Process check times:";
-            // 
             // gbxOptions
             // 
+            this.gbxOptions.Controls.Add(this.textBox1);
+            this.gbxOptions.Controls.Add(this.label1);
             this.gbxOptions.Controls.Add(this.numMaxRestarts);
-            this.gbxOptions.Controls.Add(this.numCheckTimes);
             this.gbxOptions.Controls.Add(this.lblMaxRestarts);
-            this.gbxOptions.Controls.Add(this.lblCheckTimes);
             this.gbxOptions.Location = new System.Drawing.Point(12, 12);
             this.gbxOptions.Name = "gbxOptions";
             this.gbxOptions.Size = new System.Drawing.Size(356, 76);
@@ -70,22 +59,15 @@
             // 
             // numMaxRestarts
             // 
-            this.numMaxRestarts.Location = new System.Drawing.Point(230, 45);
+            this.numMaxRestarts.Location = new System.Drawing.Point(148, 19);
             this.numMaxRestarts.Name = "numMaxRestarts";
-            this.numMaxRestarts.Size = new System.Drawing.Size(120, 20);
+            this.numMaxRestarts.Size = new System.Drawing.Size(202, 20);
             this.numMaxRestarts.TabIndex = 1;
-            // 
-            // numCheckTimes
-            // 
-            this.numCheckTimes.Location = new System.Drawing.Point(230, 19);
-            this.numCheckTimes.Name = "numCheckTimes";
-            this.numCheckTimes.Size = new System.Drawing.Size(120, 20);
-            this.numCheckTimes.TabIndex = 1;
             // 
             // lblMaxRestarts
             // 
             this.lblMaxRestarts.AutoSize = true;
-            this.lblMaxRestarts.Location = new System.Drawing.Point(6, 47);
+            this.lblMaxRestarts.Location = new System.Drawing.Point(6, 21);
             this.lblMaxRestarts.Name = "lblMaxRestarts";
             this.lblMaxRestarts.Size = new System.Drawing.Size(128, 13);
             this.lblMaxRestarts.TabIndex = 0;
@@ -94,7 +76,6 @@
             // gbxOtherOptions
             // 
             this.gbxOtherOptions.Controls.Add(this.comboBox1);
-            this.gbxOtherOptions.Controls.Add(this.checkBox2);
             this.gbxOtherOptions.Controls.Add(this.checkBox1);
             this.gbxOtherOptions.Controls.Add(this.label4);
             this.gbxOtherOptions.Location = new System.Drawing.Point(12, 94);
@@ -107,20 +88,10 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(229, 19);
+            this.comboBox1.Location = new System.Drawing.Point(148, 19);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(202, 21);
             this.comboBox1.TabIndex = 2;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(9, 38);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(151, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Write program log in to file.";
-            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // checkBox1
             // 
@@ -150,6 +121,22 @@
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Log Path";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(148, 46);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(202, 20);
+            this.textBox1.TabIndex = 3;
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,7 +155,6 @@
             this.gbxOptions.ResumeLayout(false);
             this.gbxOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxRestarts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCheckTimes)).EndInit();
             this.gbxOtherOptions.ResumeLayout(false);
             this.gbxOtherOptions.PerformLayout();
             this.ResumeLayout(false);
@@ -176,17 +162,15 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblCheckTimes;
         private System.Windows.Forms.GroupBox gbxOptions;
         private System.Windows.Forms.NumericUpDown numMaxRestarts;
-        private System.Windows.Forms.NumericUpDown numCheckTimes;
         private System.Windows.Forms.Label lblMaxRestarts;
         private System.Windows.Forms.GroupBox gbxOtherOptions;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

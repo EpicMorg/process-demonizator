@@ -58,7 +58,7 @@ namespace PD.Api.DataTypes {
     public class RunningDemonizedProcess : DemonizedProcess, IRunningDemonizedProcess {
 
         public virtual int Restarts { get; set; }
-        public virtual Status Status { get; protected set; }
+        public virtual Status Status { get; set; }
         public virtual ProcessPriorityClass? CurrentPriority { get; set; }
 
     }

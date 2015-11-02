@@ -35,10 +35,14 @@ namespace PD.CLI.CORE.Api {
         private ISettings _settings;
 
         private Process process;
+        private readonly EventHandler _processOnExited;
 
         public InternalDemonizedProcess( ISettingsFactory settings, ILogManager log ) {
             _log = log;
             _settings = settings.Get();
+            _processOnExited = ( a, b ) => {
+                OnExit();
+            };
         }
 
         public override ProcessPriorityClass? CurrentPriority => IsRunning() ? process.PriorityClass : (ProcessPriorityClass?) null;
@@ -110,30 +114,19 @@ namespace PD.CLI.CORE.Api {
         }
 
         private async Task StartInternal() {
-            EventHandler processOnExited = ( a, b ) => _event.Release();
             try {
                 Restarts = 0;
 
-                process = new Process
-                {
-                    StartInfo = {
-                    Arguments = Arguments,
-                    FileName = Path,
-                    CreateNoWindow = HideOnStart,
-                    WindowStyle = HideOnStart ? ProcessWindowStyle.Hidden : ProcessWindowStyle.Normal,
-                    UseShellExecute = false,
-                }
-                };
-                process.Exited += processOnExited;
                 var i = 0;
                 do {
                     if ( i > 0 )
                         _log.Log( $"Restarting [{Id}/{Name}] {i}/{_settings.RestartLimit}" );
                     try {
                         _log.Log( $"Starting process [{Id}/{Name}] : {Path} {Arguments}" );
+                        CreateProcess();
                         process.Start();
+                        process.PriorityClass = Priority;
                         await _event.WaitAsync().ConfigureAwait( false );
-                        _log.Log( $"Exited process [{Id}/{Name}] : {Path} {Arguments}" );
                     }
                     catch ( Exception ex ) {
                         process = null;
@@ -145,12 +138,32 @@ namespace PD.CLI.CORE.Api {
                 } while ( i < _settings.RestartLimit && Status == Status.Running && Autorestart );
             }
             finally {
-                process.Exited -= processOnExited;
+                process.Exited -= _processOnExited;
                 lock ( statusLocker ) {
                     if ( Status == Status.Running )
                         Status = Status.NotRunning;
                 }
             }
+        }
+
+        private void CreateProcess() {
+            process = new Process {
+                StartInfo = {
+                    Arguments = Arguments,
+                    FileName = Path,
+                    CreateNoWindow = HideOnStart,
+                    WindowStyle = HideOnStart ? ProcessWindowStyle.Hidden : ProcessWindowStyle.Normal,
+                    UseShellExecute = false,
+                },
+                EnableRaisingEvents = true,
+            };
+            process.Exited += _processOnExited;
+        }
+
+        private void OnExit() {
+            _log.Log( $"Exited process [{Id}/{Name}] : {Path} {Arguments}" );
+            _event.Release();
+            process.Exited -= _processOnExited;
         }
 
     }
