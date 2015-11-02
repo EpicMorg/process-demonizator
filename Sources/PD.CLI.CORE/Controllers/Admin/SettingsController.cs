@@ -14,7 +14,7 @@ namespace PD.CLI.CORE.Controllers
         private readonly IAdminApi _api;
         private readonly ILogManager _log;
 
-        public SettingsController( IAdminApi api, ILogManager log ) : base( api ) {
+        public SettingsController( IAdminApi api, ILogManager log ) : base( api, log ) {
             _api = api;
             _log = log;
         }

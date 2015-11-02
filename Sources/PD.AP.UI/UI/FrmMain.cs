@@ -101,7 +101,8 @@ namespace process_demonizator.UI {
                     return;
                 }
 
-                if ( checkResult ) await ApplyApi( api, key ).ConfigureAwait( true );
+                if ( checkResult )
+                    await ApplyApi( api, key ).ConfigureAwait( true );
                 else MessageBox.Show( "Wrong pass", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
         }
