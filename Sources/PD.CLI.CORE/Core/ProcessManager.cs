@@ -75,6 +75,8 @@ namespace PD.CLI.CORE.Core {
                 try {
                     var insert = MappingHelper.Instance.Map<IPasswordedDemonizedProcess, InternalDemonizedProcess>( model ); //todo: actual mapping
                     insert.Id = NextId();
+                    if ( insert.Priority == 0 )
+                        insert.Priority = System.Diagnostics.ProcessPriorityClass.Normal;
                     _processes.Add(insert.Id, insert);
                     Save();
                     return insert.Id;

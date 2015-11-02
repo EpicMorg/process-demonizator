@@ -58,7 +58,9 @@ namespace PD.CLI.CORE.Api {
                 Status = Status.Starting;
             }
             StartInternal().ConfigureAwait( false ); //sic!
-            lock ( statusLocker ) Status = Status.Running;
+            lock ( statusLocker )
+                if (Status==Status.Starting)
+                    Status = Status.Running;
         }
 
         public async Task Stop() {
@@ -132,15 +134,19 @@ namespace PD.CLI.CORE.Api {
                         process = null;
                         _log.Log( $"Failed to start [{Id}/{Name}] : {Path} {Arguments}\r\nException:{ex.Message}" );
                         _event.Release();
+                        break;
+                    }
+                    finally {
+                        if (process!=null)
+                            process.Exited -= _processOnExited;
                     }
                     Restarts++;
                     i++;
                 } while ( i < _settings.RestartLimit && Status == Status.Running && Autorestart );
             }
             finally {
-                process.Exited -= _processOnExited;
                 lock ( statusLocker ) {
-                    if ( Status == Status.Running )
+                    if ( Status == Status.Running||Status==Status.Starting )
                         Status = Status.NotRunning;
                 }
             }

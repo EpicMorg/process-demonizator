@@ -26,12 +26,12 @@ namespace PD.CLI.CORE.Core {
                 writer = new StreamWriter( _settings.LogPath ) { AutoFlush = true };
         }
 
-        public async Task<IEnumerable<string>> Show( int tailCount ) => _repository.AsEnumerable().Reverse().Take( tailCount ).Reverse();
+        public async Task<IEnumerable<string>> Show( int tailCount ) => _repository.AsEnumerable().Take( tailCount ).Reverse();
 
         public void Log( string s ) {
             string value = $"{DateTime.Now.ToString("G")}: {s}";
-            Console.Error.WriteLine( value);
-            writer.WriteLine(value);
+            Console.Out.WriteLine( value);
+            writer?.WriteLine(value);
             _repository.Push(value);
         }
 

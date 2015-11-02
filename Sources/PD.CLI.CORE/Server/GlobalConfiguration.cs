@@ -20,7 +20,7 @@ namespace PD.CLI.CORE.Server {
                     }
                 }
             };
-            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter());
+            //config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter());
             config.Formatters.Remove( config.Formatters.XmlFormatter );
             config.MapHttpAttributeRoutes();
             config.EnsureInitialized();

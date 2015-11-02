@@ -16,10 +16,10 @@ namespace PD.CLI.CORE.Controllers {
             _api = api;
             _log = log;
         }
-        [Route("Show/{tailCount}")]
+        [Route("{tailCount}")]
         [HttpGet]
-        public async Task<IEnumerable<string>> Show( [FromUri] string key, int tailCount ) {
-            _log.Log( $"Listing processes as admin[{RemoteIp}]" );
+        public async Task<IEnumerable<string>> Show( [FromUri] string key, [FromUri]int tailCount ) {
+            _log.Log( $"Showing log({tailCount} lines) as admin[{RemoteIp}]" );
             await ThrowOnBadKey( key ).ConfigureAwait( false );
             return await _api.Log.Show( tailCount ).ConfigureAwait( false );
         }

@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
@@ -12,6 +14,7 @@ namespace PD.CLI.CORE {
         private static void Main(string[] args)
         {
             Di.Initialize();
+            Console.OutputEncoding = Encoding.Unicode;
             var prog = new Program(Di.Get<ILogManager>(), new FileConfiguration() { Url = ConfigurationManager.AppSettings["Address"] });
             prog.Start();
         }
