@@ -62,6 +62,7 @@ namespace process_demonizator.UI {
             tabControl.Enabled = enabled;
             smenuSettions.Enabled = enabled;
             smenuAddNewItem.Enabled = enabled;
+            refreshToolStripMenuItem.Enabled = enabled;
         }
 
         private async Task UpdateProcesses() {
@@ -218,6 +219,16 @@ namespace process_demonizator.UI {
                     break;
             }
             
+        }
+
+        private void АнглийскийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanguageManager.Set( "en" );
+        }
+
+        private void russianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanguageManager.Set("ru");
         }
     }
 

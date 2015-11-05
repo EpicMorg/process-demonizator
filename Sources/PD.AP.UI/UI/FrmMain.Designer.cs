@@ -40,6 +40,9 @@
             this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smenuSettions = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.инглишToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.russianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.smenuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.smenuLicense = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,15 +145,17 @@
             // 
             this.menuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshToolStripMenuItem,
-            this.smenuSettions});
+            this.smenuSettions,
+            this.languageToolStripMenuItem});
             this.menuEdit.Name = "menuEdit";
             this.menuEdit.Size = new System.Drawing.Size(39, 20);
             this.menuEdit.Text = "Edit";
             // 
             // refreshToolStripMenuItem
             // 
+            this.refreshToolStripMenuItem.Enabled = false;
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
@@ -158,9 +163,32 @@
             // 
             this.smenuSettions.Enabled = false;
             this.smenuSettions.Name = "smenuSettions";
-            this.smenuSettions.Size = new System.Drawing.Size(116, 22);
-            this.smenuSettions.Text = "Settings";
+            this.smenuSettions.Size = new System.Drawing.Size(152, 22);
+            this.smenuSettions.Text = "Server settings";
             this.smenuSettions.Click += new System.EventHandler(this.smenuSettions_Click);
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.инглишToolStripMenuItem,
+            this.russianToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.languageToolStripMenuItem.Text = "Language";
+            // 
+            // инглишToolStripMenuItem
+            // 
+            this.инглишToolStripMenuItem.Name = "инглишToolStripMenuItem";
+            this.инглишToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.инглишToolStripMenuItem.Text = "English";
+            this.инглишToolStripMenuItem.Click += new System.EventHandler(this.АнглийскийToolStripMenuItem_Click);
+            // 
+            // russianToolStripMenuItem
+            // 
+            this.russianToolStripMenuItem.Name = "russianToolStripMenuItem";
+            this.russianToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.russianToolStripMenuItem.Text = "Russian";
+            this.russianToolStripMenuItem.Click += new System.EventHandler(this.russianToolStripMenuItem_Click);
             // 
             // menuHelp
             // 
@@ -508,6 +536,9 @@
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem инглишToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem russianToolStripMenuItem;
     }
 }
 

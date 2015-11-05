@@ -124,6 +124,16 @@ namespace PD.CL.UI.UI {
                 frm.ShowDialog();
             }
         }
+
+        private void английскийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanguageManager.Set("en");
+        }
+
+        private void russianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanguageManager.Set("ru");
+        }
     }
 
 }

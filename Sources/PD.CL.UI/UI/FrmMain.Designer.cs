@@ -33,9 +33,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tabItems = new System.Windows.Forms.TabPage();
             this.dgvProcessList = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDemonizedProcessBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl = new System.Windows.Forms.TabControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -48,6 +45,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.smenuStartMonitorServer = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.английскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.russianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cmProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,28 +56,28 @@
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmUnlock = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDemonizedProcessBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iDemonizedProcessBaseBindingSource)).BeginInit();
             this.tabControl.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.cmProcess.SuspendLayout();
             this.cmUnlock.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iDemonizedProcessBaseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabItems
             // 
+            resources.ApplyResources(this.tabItems, "tabItems");
             this.tabItems.Controls.Add(this.dgvProcessList);
-            this.tabItems.Location = new System.Drawing.Point(4, 22);
             this.tabItems.Name = "tabItems";
-            this.tabItems.Padding = new System.Windows.Forms.Padding(3);
-            this.tabItems.Size = new System.Drawing.Size(864, 437);
-            this.tabItems.TabIndex = 0;
-            this.tabItems.Text = "Items";
             this.tabItems.UseVisualStyleBackColor = true;
             // 
             // dgvProcessList
             // 
+            resources.ApplyResources(this.dgvProcessList, "dgvProcessList");
             this.dgvProcessList.AllowUserToAddRows = false;
             this.dgvProcessList.AllowUserToDeleteRows = false;
             this.dgvProcessList.AutoGenerateColumns = false;
@@ -86,19 +86,166 @@
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn});
             this.dgvProcessList.DataSource = this.iDemonizedProcessBaseBindingSource;
-            this.dgvProcessList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProcessList.Location = new System.Drawing.Point(3, 3);
             this.dgvProcessList.Name = "dgvProcessList";
             this.dgvProcessList.ReadOnly = true;
             this.dgvProcessList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProcessList.Size = new System.Drawing.Size(858, 431);
-            this.dgvProcessList.TabIndex = 0;
             this.dgvProcessList.DataSourceChanged += new System.EventHandler(this.dgvProcessList_DataSourceChanged_1);
+            // 
+            // tabControl
+            // 
+            resources.ApplyResources(this.tabControl, "tabControl");
+            this.tabControl.Controls.Add(this.tabItems);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.statusStrip1.Name = "statusStrip1";
+            // 
+            // _notifyIcon
+            // 
+            resources.ApplyResources(this._notifyIcon, "_notifyIcon");
+            this._notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this._notifyIcon_MouseClick);
+            // 
+            // smenuAbout
+            // 
+            resources.ApplyResources(this.smenuAbout, "smenuAbout");
+            this.smenuAbout.Name = "smenuAbout";
+            this.smenuAbout.Click += new System.EventHandler(this.smenuAbout_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            // 
+            // smenuHelp
+            // 
+            resources.ApplyResources(this.smenuHelp, "smenuHelp");
+            this.smenuHelp.Name = "smenuHelp";
+            // 
+            // menuHelp
+            // 
+            resources.ApplyResources(this.menuHelp, "menuHelp");
+            this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.smenuHelp,
+            this.smenuLicense,
+            this.toolStripSeparator3,
+            this.smenuAbout});
+            this.menuHelp.Name = "menuHelp";
+            // 
+            // smenuLicense
+            // 
+            resources.ApplyResources(this.smenuLicense, "smenuLicense");
+            this.smenuLicense.Name = "smenuLicense";
+            this.smenuLicense.Click += new System.EventHandler(this.smenuLicense_Click);
+            // 
+            // smenuExit
+            // 
+            resources.ApplyResources(this.smenuExit, "smenuExit");
+            this.smenuExit.Name = "smenuExit";
+            // 
+            // toolStripSeparator1
+            // 
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            // 
+            // smenuStartMonitorServer
+            // 
+            resources.ApplyResources(this.smenuStartMonitorServer, "smenuStartMonitorServer");
+            this.smenuStartMonitorServer.Name = "smenuStartMonitorServer";
+            this.smenuStartMonitorServer.Click += new System.EventHandler(this.smenuStartMonitorServer_Click);
+            // 
+            // menuFile
+            // 
+            resources.ApplyResources(this.menuFile, "menuFile");
+            this.menuFile.BackColor = System.Drawing.SystemColors.Control;
+            this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.smenuStartMonitorServer,
+            this.toolStripSeparator1,
+            this.smenuExit,
+            this.languageToolStripMenuItem});
+            this.menuFile.Name = "menuFile";
+            // 
+            // languageToolStripMenuItem
+            // 
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.английскийToolStripMenuItem,
+            this.russianToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            // 
+            // английскийToolStripMenuItem
+            // 
+            resources.ApplyResources(this.английскийToolStripMenuItem, "английскийToolStripMenuItem");
+            this.английскийToolStripMenuItem.Name = "английскийToolStripMenuItem";
+            this.английскийToolStripMenuItem.Click += new System.EventHandler(this.английскийToolStripMenuItem_Click);
+            // 
+            // russianToolStripMenuItem
+            // 
+            resources.ApplyResources(this.russianToolStripMenuItem, "russianToolStripMenuItem");
+            this.russianToolStripMenuItem.Name = "russianToolStripMenuItem";
+            this.russianToolStripMenuItem.Click += new System.EventHandler(this.russianToolStripMenuItem_Click);
+            // 
+            // menuStrip1
+            // 
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFile,
+            this.menuHelp});
+            this.menuStrip1.Name = "menuStrip1";
+            // 
+            // cmProcess
+            // 
+            resources.ApplyResources(this.cmProcess, "cmProcess");
+            this.cmProcess.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startToolStripMenuItem,
+            this.restartToolStripMenuItem,
+            this.stopToolStripMenuItem,
+            this.infoToolStripMenuItem});
+            this.cmProcess.Name = "cmProcess";
+            // 
+            // startToolStripMenuItem
+            // 
+            resources.ApplyResources(this.startToolStripMenuItem, "startToolStripMenuItem");
+            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
+            // 
+            // restartToolStripMenuItem
+            // 
+            resources.ApplyResources(this.restartToolStripMenuItem, "restartToolStripMenuItem");
+            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
+            this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
+            // 
+            // stopToolStripMenuItem
+            // 
+            resources.ApplyResources(this.stopToolStripMenuItem, "stopToolStripMenuItem");
+            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
+            // 
+            // infoToolStripMenuItem
+            // 
+            resources.ApplyResources(this.infoToolStripMenuItem, "infoToolStripMenuItem");
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
+            // cmUnlock
+            // 
+            resources.ApplyResources(this.cmUnlock, "cmUnlock");
+            this.cmUnlock.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unlockToolStripMenuItem});
+            this.cmUnlock.Name = "cmUnlock";
+            // 
+            // unlockToolStripMenuItem
+            // 
+            resources.ApplyResources(this.unlockToolStripMenuItem, "unlockToolStripMenuItem");
+            this.unlockToolStripMenuItem.Name = "unlockToolStripMenuItem";
+            this.unlockToolStripMenuItem.Click += new System.EventHandler(this.unlockToolStripMenuItem_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            resources.ApplyResources(this.idDataGridViewTextBoxColumn, "idDataGridViewTextBoxColumn");
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -106,7 +253,7 @@
             // 
             this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            resources.ApplyResources(this.nameDataGridViewTextBoxColumn, "nameDataGridViewTextBoxColumn");
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -114,185 +261,24 @@
             // 
             this.iDemonizedProcessBaseBindingSource.DataSource = typeof(PD.Api.DataTypes.IDemonizedProcessBase);
             // 
-            // tabControl
-            // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tabItems);
-            this.tabControl.Location = new System.Drawing.Point(12, 27);
-            this.tabControl.MinimumSize = new System.Drawing.Size(480, 240);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(872, 463);
-            this.tabControl.TabIndex = 6;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 493);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(896, 22);
-            this.statusStrip1.TabIndex = 5;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // _notifyIcon
-            // 
-            this._notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("_notifyIcon.Icon")));
-            this._notifyIcon.Visible = true;
-            this._notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this._notifyIcon_MouseClick);
-            // 
-            // smenuAbout
-            // 
-            this.smenuAbout.Name = "smenuAbout";
-            this.smenuAbout.Size = new System.Drawing.Size(113, 22);
-            this.smenuAbout.Text = "About";
-            this.smenuAbout.Click += new System.EventHandler(this.smenuAbout_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(110, 6);
-            // 
-            // smenuHelp
-            // 
-            this.smenuHelp.Enabled = false;
-            this.smenuHelp.Name = "smenuHelp";
-            this.smenuHelp.Size = new System.Drawing.Size(113, 22);
-            this.smenuHelp.Text = "Help";
-            // 
-            // menuHelp
-            // 
-            this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.smenuHelp,
-            this.smenuLicense,
-            this.toolStripSeparator3,
-            this.smenuAbout});
-            this.menuHelp.Name = "menuHelp";
-            this.menuHelp.Size = new System.Drawing.Size(44, 20);
-            this.menuHelp.Text = "Help";
-            // 
-            // smenuLicense
-            // 
-            this.smenuLicense.Name = "smenuLicense";
-            this.smenuLicense.Size = new System.Drawing.Size(113, 22);
-            this.smenuLicense.Text = "License";
-            this.smenuLicense.Click += new System.EventHandler(this.smenuLicense_Click);
-            // 
-            // smenuExit
-            // 
-            this.smenuExit.Name = "smenuExit";
-            this.smenuExit.Size = new System.Drawing.Size(170, 22);
-            this.smenuExit.Text = "Exit";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(167, 6);
-            // 
-            // smenuStartMonitorServer
-            // 
-            this.smenuStartMonitorServer.Name = "smenuStartMonitorServer";
-            this.smenuStartMonitorServer.Size = new System.Drawing.Size(170, 22);
-            this.smenuStartMonitorServer.Text = "Connect to  server";
-            this.smenuStartMonitorServer.Click += new System.EventHandler(this.smenuStartMonitorServer_Click);
-            // 
-            // menuFile
-            // 
-            this.menuFile.BackColor = System.Drawing.SystemColors.Control;
-            this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.smenuStartMonitorServer,
-            this.toolStripSeparator1,
-            this.smenuExit});
-            this.menuFile.Name = "menuFile";
-            this.menuFile.Size = new System.Drawing.Size(37, 20);
-            this.menuFile.Text = "File";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuFile,
-            this.menuHelp});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(896, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // cmProcess
-            // 
-            this.cmProcess.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startToolStripMenuItem,
-            this.restartToolStripMenuItem,
-            this.stopToolStripMenuItem,
-            this.infoToolStripMenuItem});
-            this.cmProcess.Name = "cmProcess";
-            this.cmProcess.Size = new System.Drawing.Size(153, 114);
-            // 
-            // startToolStripMenuItem
-            // 
-            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.startToolStripMenuItem.Text = "Start";
-            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
-            // 
-            // restartToolStripMenuItem
-            // 
-            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.restartToolStripMenuItem.Text = "Restart";
-            this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
-            // 
-            // stopToolStripMenuItem
-            // 
-            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.stopToolStripMenuItem.Text = "Stop";
-            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
-            // 
-            // infoToolStripMenuItem
-            // 
-            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.infoToolStripMenuItem.Text = "Info";
-            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
-            // 
-            // cmUnlock
-            // 
-            this.cmUnlock.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unlockToolStripMenuItem});
-            this.cmUnlock.Name = "cmUnlock";
-            this.cmUnlock.Size = new System.Drawing.Size(112, 26);
-            // 
-            // unlockToolStripMenuItem
-            // 
-            this.unlockToolStripMenuItem.Name = "unlockToolStripMenuItem";
-            this.unlockToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-            this.unlockToolStripMenuItem.Text = "Unlock";
-            this.unlockToolStripMenuItem.Click += new System.EventHandler(this.unlockToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(896, 515);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(480, 240);
             this.Name = "FrmMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "name + vers";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.Resize += new System.EventHandler(this.FormForTray_Resize);
             this.tabItems.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iDemonizedProcessBaseBindingSource)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.cmProcess.ResumeLayout(false);
             this.cmUnlock.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iDemonizedProcessBaseBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,6 +310,9 @@
         private System.Windows.Forms.DataGridView dgvProcessList;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem английскийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem russianToolStripMenuItem;
     }
 }
 

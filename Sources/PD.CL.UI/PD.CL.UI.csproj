@@ -91,6 +91,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\FrmMain.ru.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmProcessInfo.resx">
       <DependentUpon>frmProcessInfo.cs</DependentUpon>
     </EmbeddedResource>
