@@ -160,6 +160,7 @@ namespace PD.CLI.CORE.Api {
                     CreateNoWindow = HideOnStart,
                     WindowStyle = HideOnStart ? ProcessWindowStyle.Hidden : ProcessWindowStyle.Normal,
                     UseShellExecute = false,
+                    WorkingDirectory = System.IO.Path.GetDirectoryName(Path),
                 },
                 EnableRaisingEvents = true,
             };
