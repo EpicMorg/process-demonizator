@@ -24,11 +24,6 @@ namespace process_demonizator.UI {
         }
 
         private RunningDemonizedProcess GetMenuRow( object o ) {
-            //var toolStripItem = o as ToolStripItem;
-            //var toolStrip = toolStripItem?.Owner;
-            //var contextMenuStrip = toolStrip as ContextMenuStrip;
-            //var sourceControl = contextMenuStrip?.SourceControl;
-            //var dataGridView = sourceControl as DataGridView;
             var dataGridView = dgvProcessList;
             var dataGridViewSelectedRowCollection = dataGridView?.SelectedRows;
             var dataGridViewRows = dataGridViewSelectedRowCollection?.OfType<DataGridViewRow>();

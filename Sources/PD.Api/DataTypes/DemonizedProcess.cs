@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace PD.Api.DataTypes {
 
@@ -40,17 +41,15 @@ namespace PD.Api.DataTypes {
     }
 
     public class DemonizedProcess : DemonizedProcessBase, IDemonizedProcess {
-
-        public virtual string Path { get; set; }
-        public virtual string Arguments { get; set; }
+        public virtual string Path { get; set; } = "";
+        public virtual string Arguments { get; set; } = "";
         public virtual bool HideOnStart { get; set; }
         public virtual bool Autorestart { get; set; }
-        public virtual ProcessPriorityClass Priority { get; set; }
+        public virtual ProcessPriorityClass Priority { get; set; } = ProcessPriorityClass.Normal;
 
     }
 
     public class PasswordedDemonizedProcess : DemonizedProcess, IPasswordedDemonizedProcess {
-
         public virtual string Key { get; set; }
 
     }

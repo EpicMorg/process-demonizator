@@ -39,7 +39,7 @@ namespace PD.CLI.CORE.Controllers {
         [Route( "Edit" )]
         public async Task Edit( [FromUri] string key, [FromBody]PasswordedDemonizedProcess model ) {
             _log.Log( $"Editing process {model?.Id} [{RemoteIp}]" );
-            if ( !ModelState.IsValid ) throw new ArgumentException( nameof( model ) );
+            //if ( !ModelState.IsValid ) throw new ArgumentException( nameof( model ) );
             await ThrowOnBadKey( key ).ConfigureAwait( false );
             await _api.Process.Edit( model ).ConfigureAwait( false );
         }
@@ -47,8 +47,9 @@ namespace PD.CLI.CORE.Controllers {
         [HttpPost]
         [Route( "" )]
         public async Task<int> Create( [FromUri] string key, [FromBody]PasswordedDemonizedProcess model ) {
-            _log.Log( $"Creating process {model?.Id} [{RemoteIp}]" );
-            if ( !ModelState.IsValid ) throw new ArgumentException( nameof( model ) );
+            _log.Log( $"Creating process for [{RemoteIp}]" );
+            model.Arguments = model.Arguments ?? "";
+            //if ( !ModelState.IsValid ) throw new ArgumentException( nameof( model ) );
             await ThrowOnBadKey( key ).ConfigureAwait( false );
             return await _api.Process.Create( model ).ConfigureAwait( false );
         }
