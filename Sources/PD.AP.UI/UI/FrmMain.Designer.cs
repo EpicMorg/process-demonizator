@@ -53,6 +53,18 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabItems = new System.Windows.Forms.TabPage();
             this.dgvProcessList = new System.Windows.Forms.DataGridView();
+            this.cmProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabLogs = new System.Windows.Forms.TabPage();
+            this.txtLogs = new System.Windows.Forms.TextBox();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,25 +75,16 @@
             this.hideOnStartDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.autorestartDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.priorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runningDemonizedProcessBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabLogs = new System.Windows.Forms.TabPage();
-            this.txtLogs = new System.Windows.Forms.TextBox();
+            this.statusServer = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).BeginInit();
             this.cmProcess.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.runningDemonizedProcessBindingSource)).BeginInit();
             this.tabLogs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.runningDemonizedProcessBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -146,6 +149,7 @@
             this.menuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshToolStripMenuItem,
             this.smenuSettions,
+            this.changePasswordToolStripMenuItem,
             this.languageToolStripMenuItem});
             this.menuEdit.Name = "menuEdit";
             this.menuEdit.Size = new System.Drawing.Size(39, 20);
@@ -155,7 +159,7 @@
             // 
             this.refreshToolStripMenuItem.Enabled = false;
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
@@ -163,7 +167,7 @@
             // 
             this.smenuSettions.Enabled = false;
             this.smenuSettions.Name = "smenuSettions";
-            this.smenuSettions.Size = new System.Drawing.Size(152, 22);
+            this.smenuSettions.Size = new System.Drawing.Size(168, 22);
             this.smenuSettions.Text = "Server settings";
             this.smenuSettions.Click += new System.EventHandler(this.smenuSettions_Click);
             // 
@@ -173,20 +177,20 @@
             this.инглишToolStripMenuItem,
             this.russianToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.languageToolStripMenuItem.Text = "Language";
             // 
             // инглишToolStripMenuItem
             // 
             this.инглишToolStripMenuItem.Name = "инглишToolStripMenuItem";
-            this.инглишToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.инглишToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.инглишToolStripMenuItem.Text = "English";
             this.инглишToolStripMenuItem.Click += new System.EventHandler(this.АнглийскийToolStripMenuItem_Click);
             // 
             // russianToolStripMenuItem
             // 
             this.russianToolStripMenuItem.Name = "russianToolStripMenuItem";
-            this.russianToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.russianToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.russianToolStripMenuItem.Text = "Russian";
             this.russianToolStripMenuItem.Click += new System.EventHandler(this.russianToolStripMenuItem_Click);
             // 
@@ -235,10 +239,13 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusServer});
             this.statusStrip1.Location = new System.Drawing.Point(0, 513);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1096, 22);
             this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Tag = "Disconnected";
             this.statusStrip1.Text = "statusStrip1";
             // 
             // tabControl
@@ -293,76 +300,6 @@
             this.dgvProcessList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProcessList.Size = new System.Drawing.Size(1058, 451);
             this.dgvProcessList.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // restartsDataGridViewTextBoxColumn
-            // 
-            this.restartsDataGridViewTextBoxColumn.DataPropertyName = "Restarts";
-            this.restartsDataGridViewTextBoxColumn.HeaderText = "Restarts";
-            this.restartsDataGridViewTextBoxColumn.Name = "restartsDataGridViewTextBoxColumn";
-            this.restartsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // currentPriorityDataGridViewTextBoxColumn
-            // 
-            this.currentPriorityDataGridViewTextBoxColumn.DataPropertyName = "CurrentPriority";
-            this.currentPriorityDataGridViewTextBoxColumn.HeaderText = "CurrentPriority";
-            this.currentPriorityDataGridViewTextBoxColumn.Name = "currentPriorityDataGridViewTextBoxColumn";
-            this.currentPriorityDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pathDataGridViewTextBoxColumn
-            // 
-            this.pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
-            this.pathDataGridViewTextBoxColumn.HeaderText = "Path";
-            this.pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
-            this.pathDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // argumentsDataGridViewTextBoxColumn
-            // 
-            this.argumentsDataGridViewTextBoxColumn.DataPropertyName = "Arguments";
-            this.argumentsDataGridViewTextBoxColumn.HeaderText = "Arguments";
-            this.argumentsDataGridViewTextBoxColumn.Name = "argumentsDataGridViewTextBoxColumn";
-            this.argumentsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hideOnStartDataGridViewCheckBoxColumn
-            // 
-            this.hideOnStartDataGridViewCheckBoxColumn.DataPropertyName = "HideOnStart";
-            this.hideOnStartDataGridViewCheckBoxColumn.HeaderText = "HideOnStart";
-            this.hideOnStartDataGridViewCheckBoxColumn.Name = "hideOnStartDataGridViewCheckBoxColumn";
-            this.hideOnStartDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // autorestartDataGridViewCheckBoxColumn
-            // 
-            this.autorestartDataGridViewCheckBoxColumn.DataPropertyName = "Autorestart";
-            this.autorestartDataGridViewCheckBoxColumn.HeaderText = "Autorestart";
-            this.autorestartDataGridViewCheckBoxColumn.Name = "autorestartDataGridViewCheckBoxColumn";
-            this.autorestartDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // priorityDataGridViewTextBoxColumn
-            // 
-            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "Priority";
-            this.priorityDataGridViewTextBoxColumn.HeaderText = "Priority";
-            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
-            this.priorityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // cmProcess
             // 
@@ -434,10 +371,6 @@
             this.hideToolStripMenuItem.Text = "Hide";
             this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
             // 
-            // runningDemonizedProcessBindingSource
-            // 
-            this.runningDemonizedProcessBindingSource.DataSource = typeof(PD.Api.DataTypes.RunningDemonizedProcess);
-            // 
             // tabLogs
             // 
             this.tabLogs.Controls.Add(this.txtLogs);
@@ -462,6 +395,94 @@
             this.txtLogs.Size = new System.Drawing.Size(1052, 445);
             this.txtLogs.TabIndex = 0;
             // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Enabled = false;
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // restartsDataGridViewTextBoxColumn
+            // 
+            this.restartsDataGridViewTextBoxColumn.DataPropertyName = "Restarts";
+            this.restartsDataGridViewTextBoxColumn.HeaderText = "Restarts";
+            this.restartsDataGridViewTextBoxColumn.Name = "restartsDataGridViewTextBoxColumn";
+            this.restartsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // currentPriorityDataGridViewTextBoxColumn
+            // 
+            this.currentPriorityDataGridViewTextBoxColumn.DataPropertyName = "CurrentPriority";
+            this.currentPriorityDataGridViewTextBoxColumn.HeaderText = "CurrentPriority";
+            this.currentPriorityDataGridViewTextBoxColumn.Name = "currentPriorityDataGridViewTextBoxColumn";
+            this.currentPriorityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pathDataGridViewTextBoxColumn
+            // 
+            this.pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
+            this.pathDataGridViewTextBoxColumn.HeaderText = "Path";
+            this.pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
+            this.pathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // argumentsDataGridViewTextBoxColumn
+            // 
+            this.argumentsDataGridViewTextBoxColumn.DataPropertyName = "Arguments";
+            this.argumentsDataGridViewTextBoxColumn.HeaderText = "Arguments";
+            this.argumentsDataGridViewTextBoxColumn.Name = "argumentsDataGridViewTextBoxColumn";
+            this.argumentsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // hideOnStartDataGridViewCheckBoxColumn
+            // 
+            this.hideOnStartDataGridViewCheckBoxColumn.DataPropertyName = "HideOnStart";
+            this.hideOnStartDataGridViewCheckBoxColumn.HeaderText = "HideOnStart";
+            this.hideOnStartDataGridViewCheckBoxColumn.Name = "hideOnStartDataGridViewCheckBoxColumn";
+            this.hideOnStartDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // autorestartDataGridViewCheckBoxColumn
+            // 
+            this.autorestartDataGridViewCheckBoxColumn.DataPropertyName = "Autorestart";
+            this.autorestartDataGridViewCheckBoxColumn.HeaderText = "Autorestart";
+            this.autorestartDataGridViewCheckBoxColumn.Name = "autorestartDataGridViewCheckBoxColumn";
+            this.autorestartDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // priorityDataGridViewTextBoxColumn
+            // 
+            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "Priority";
+            this.priorityDataGridViewTextBoxColumn.HeaderText = "Priority";
+            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
+            this.priorityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // runningDemonizedProcessBindingSource
+            // 
+            this.runningDemonizedProcessBindingSource.DataSource = typeof(PD.Api.DataTypes.RunningDemonizedProcess);
+            // 
+            // statusServer
+            // 
+            this.statusServer.Name = "statusServer";
+            this.statusServer.Size = new System.Drawing.Size(79, 17);
+            this.statusServer.Text = "Disconnected";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,13 +501,15 @@
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabItems.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcessList)).EndInit();
             this.cmProcess.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.runningDemonizedProcessBindingSource)).EndInit();
             this.tabLogs.ResumeLayout(false);
             this.tabLogs.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.runningDemonizedProcessBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -539,6 +562,8 @@
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem инглишToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem russianToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel statusServer;
     }
 }
 

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using PD.Api.DataTypes;
 using PD.UI.Shared;
+using ServiceStack.Text;
 
 namespace process_demonizator.UI {
     public sealed partial class FrmAdd : Form {
@@ -12,10 +13,18 @@ namespace process_demonizator.UI {
 
         public PasswordedDemonizedProcess Model
         {
-            get { return _model; }
+            get
+            {
+                Console.WriteLine("Editor model requested:");
+                Console.WriteLine(_model.Dump());
+                return _model;
+                
+            }
             set
             {
                 _model = value;
+                Console.WriteLine( "Editor model updated:" );
+                Console.WriteLine(_model.Dump() );
                 if ( value != null ) UpdateBindings();
             }
         }
@@ -24,44 +33,47 @@ namespace process_demonizator.UI {
             InitializeComponent();
             Text = @"Add new item :: " + InfoHelper.NameVersion;
             _cmPriorityOnSelectedValueChanged = ( sender, value ) => {
-                if ( Model != null )
-                    Model.Priority = (ProcessPriorityClass) cmPriority.SelectedItem;
+                if ( _model != null )
+                    _model.Priority = (ProcessPriorityClass) cmPriority.SelectedItem;
             };
             Model = new PasswordedDemonizedProcess();
         }
 
-        private void ClearBindings() {
-            var controls = new Control[] { txtItemName, txtPassword, txtArgs, txtPathToExe, chckHideOnStart, chckReanimateProcess };
-            foreach ( var control in controls )
-                control.DataBindings.Clear();
-            cmPriority.SelectedValueChanged -= _cmPriorityOnSelectedValueChanged;
-        }
-
         private void UpdateBindings() {
-            ClearBindings();
+            Console.WriteLine("Updating bindings");
+            var controls = new Control[] { txtItemName, txtPassword, txtArgs, txtPath, chckHideOnStart, chckReanimateProcess };
+            foreach ( var control1 in controls )
+                control1.DataBindings.Clear();
+
+            cmPriority.SelectedValueChanged -= _cmPriorityOnSelectedValueChanged;
             if ( _model == null ) return;
-            Action<Control, string> bind = ( control, property ) => control.DataBindings.Add( new Binding( nameof( control.Text ), _model, property ) );
-            //txtItemName.DataBindings.Add( new Binding( nameof( txtItemName.Text ), _model, nameof(_model.Name ) ));
-            bind( txtItemName, nameof( _model.Name ) );
-            bind(txtPassword, nameof(_model.Key));
-            bind(txtArgs, nameof(_model.Arguments));
-            bind(txtPathToExe, nameof(_model.Path));
+
+            AddBinding( txtItemName, nameof( _model.Name ) );
+            AddBinding(txtPassword, nameof(_model.Key));
+            AddBinding(txtArgs, nameof(_model.Arguments));
+            AddBinding(txtPath, nameof(_model.Path));
             
-            chckHideOnStart.DataBindings.Add( nameof( chckHideOnStart.Checked ), _model, nameof(_model.HideOnStart ) );
-            chckReanimateProcess.DataBindings.Add( nameof( chckReanimateProcess.Checked ), _model, nameof(_model.Autorestart ) );
+            chckHideOnStart.DataBindings.Add( nameof( chckHideOnStart.Checked ), _model, nameof(_model.HideOnStart ), false, DataSourceUpdateMode.OnPropertyChanged, false);
+            chckReanimateProcess.DataBindings.Add( nameof( chckReanimateProcess.Checked ), _model, nameof(_model.Autorestart ), false, DataSourceUpdateMode.OnPropertyChanged, false );
             cmPriority.Items.Clear();
             var items = (ProcessPriorityClass[]) Enum.GetValues( typeof( ProcessPriorityClass ) );
-            //cmPriority.Items.AddRange( items );
             foreach ( var item in items ) cmPriority.Items.Add( item );
+            if (_model != null )
+                cmPriority.SelectedItem = _model.Priority;
             cmPriority.SelectedValueChanged += _cmPriorityOnSelectedValueChanged;
         }
 
+        private void AddBinding( Control control, string property ) => control.DataBindings.Add( nameof( control.Text ), _model, property, false, DataSourceUpdateMode.OnPropertyChanged, "");
+
         private void btnBrowse_Click( object sender, EventArgs e ) {
             if ( ofdPath.ShowDialog() != DialogResult.OK ) return;
-            txtPathToExe.Text = ofdPath.FileName;
+            txtPath.Text = ofdPath.FileName;
         }
 
-        private void btnOK_Click( object sender, EventArgs e ) { }
+        private void btnOK_Click( object sender, EventArgs e ) {
+            Console.WriteLine( "Returning model:" );
+            Console.WriteLine( _model.Dump() );
+        }
 
     }
 

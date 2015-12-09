@@ -32,7 +32,7 @@
             this.bgxNull2 = new System.Windows.Forms.GroupBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtArgs = new System.Windows.Forms.TextBox();
-            this.txtPathToExe = new System.Windows.Forms.TextBox();
+            this.txtPath = new System.Windows.Forms.TextBox();
             this.lblArgs = new System.Windows.Forms.Label();
             this.lblPathToExe = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@
             // 
             this.bgxNull2.Controls.Add(this.btnBrowse);
             this.bgxNull2.Controls.Add(this.txtArgs);
-            this.bgxNull2.Controls.Add(this.txtPathToExe);
+            this.bgxNull2.Controls.Add(this.txtPath);
             this.bgxNull2.Controls.Add(this.lblArgs);
             this.bgxNull2.Controls.Add(this.lblPathToExe);
             this.bgxNull2.Location = new System.Drawing.Point(12, 118);
@@ -84,10 +84,10 @@
             // 
             // txtPathToExe
             // 
-            this.txtPathToExe.Location = new System.Drawing.Point(6, 32);
-            this.txtPathToExe.Name = "txtPathToExe";
-            this.txtPathToExe.Size = new System.Drawing.Size(262, 20);
-            this.txtPathToExe.TabIndex = 0;
+            this.txtPath.Location = new System.Drawing.Point(6, 32);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.Size = new System.Drawing.Size(262, 20);
+            this.txtPath.TabIndex = 0;
             // 
             // lblArgs
             // 
@@ -241,7 +241,7 @@
 
         private System.Windows.Forms.GroupBox bgxNull2;
         private System.Windows.Forms.TextBox txtArgs;
-        private System.Windows.Forms.TextBox txtPathToExe;
+        private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.Label lblArgs;
         private System.Windows.Forms.Label lblPathToExe;
         private System.Windows.Forms.GroupBox bgxNull1;

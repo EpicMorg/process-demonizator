@@ -28,17 +28,22 @@ namespace PD.CLI.CORE.Controllers
         }
         [HttpPost]
         [Route("SetSettings")]
-        public async Task SetSettings([FromUri]string key, ISettings settings ) {
+        public async Task SetSettings([FromUri]string key, Settings settings ) {
             _log.Log($"Updating settings as admin[{RemoteIp}]");
             await ThrowOnBadKey(key).ConfigureAwait(false);
             await _api.Settings.SetSettings( settings ).ConfigureAwait( false );
         }
         [HttpPost]
         [Route("SetKey")]
-        public async Task SetKey([FromUri]string key, string newkey ) {
+        public async Task SetKey([FromUri]string key, SetKeyK v ) {
             _log.Log($"Updating key as admin[{RemoteIp}]");
             await ThrowOnBadKey(key).ConfigureAwait(false);
-            await _api.Settings.SetKey( newkey ).ConfigureAwait( false );
+            await _api.Settings.SetKey( v.newKey ).ConfigureAwait( false );
+        }
+        public class SetKeyK {
+
+             public string newKey { get; set; }
+
         }
         [HttpPost]
         [Route("CheckKey")]

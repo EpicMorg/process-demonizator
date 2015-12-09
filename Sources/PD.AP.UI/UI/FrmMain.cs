@@ -7,6 +7,7 @@ using PD.Api;
 using PD.Api.Client;
 using PD.Api.DataTypes;
 using PD.UI.Shared;
+using ServiceStack.Text;
 
 namespace process_demonizator.UI {
 
@@ -57,6 +58,7 @@ namespace process_demonizator.UI {
             tabControl.Enabled = enabled;
             smenuSettions.Enabled = enabled;
             smenuAddNewItem.Enabled = enabled;
+            changePasswordToolStripMenuItem.Enabled = enabled;
             refreshToolStripMenuItem.Enabled = enabled;
         }
 
@@ -102,12 +104,18 @@ namespace process_demonizator.UI {
                 }
                 catch ( Exception ex ) {
                     MessageBox.Show( "Failed to get response from server", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    statusServer.Text = "Disconnected";
                     return;
                 }
 
-                if ( checkResult )
+                if ( checkResult) { 
                     await ApplyApi( api, key ).ConfigureAwait( true );
-                else MessageBox.Show( "Wrong pass", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    statusServer.Text = $"Managing {frmStartHm.Server}";
+                }
+                else {
+                    MessageBox.Show( "Wrong pass", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    statusServer.Text = "Disconnected";
+                }
             }
         }
 
@@ -185,6 +193,7 @@ namespace process_demonizator.UI {
                 if ( add.ShowDialog() != DialogResult.OK ) return;
                 await _api.Process.Edit( em ).ConfigureAwait( true );
             }
+            await UpdateProcesses().ConfigureAwait(true);
         }
 
         private async void refreshToolStripMenuItem_Click( object sender, EventArgs e ) => await Refresh().ConfigureAwait( true );
@@ -224,6 +233,18 @@ namespace process_demonizator.UI {
         private void russianToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LanguageManager.Set("ru");
+        }
+
+        private async void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using ( var frm = new FrmPassword() ) {
+                if ( frm.ShowDialog() == DialogResult.OK ) {
+                    var password = frm.Password;
+                    await _api.Settings.SetKey( password ).ConfigureAwait( true );
+                    _api.Key = password;
+                }
+            }
+            await UpdateProcesses().ConfigureAwait(true);
         }
     }
 

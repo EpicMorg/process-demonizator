@@ -32,7 +32,7 @@ namespace PD.Api.Client {
 
         public async Task Hide( int id ) => await PostRaw( id, key, "Hide" ).ConfigureAwait( false );
 
-        public async Task Edit( IPasswordedDemonizedProcess model ) => await GetResponse( await _client.PostAsync( GetKeyQuery( "", key ), ToContent( model ) ).ConfigureAwait( false ) ).ConfigureAwait( false );
+        public async Task Edit( IPasswordedDemonizedProcess model ) => await GetResponse( await _client.PostAsync( GetKeyQuery( "Edit", key ), ToContent( model ) ).ConfigureAwait( false ) ).ConfigureAwait( false );
 
         public async Task<int> Create( IPasswordedDemonizedProcess model ) => int.Parse( await GetResponse( await _client.PostAsync( GetKeyQuery( "", key ), ToContent( model ) ).ConfigureAwait( false ) ).ConfigureAwait( false ) );
 
@@ -41,7 +41,7 @@ namespace PD.Api.Client {
                 new KVP( nameof( model.Key ), model.Key ), new KVP( nameof( model.Arguments ), model.Arguments ), new KVP( nameof( model.Name ), model.Name ),
                 new KVP( nameof( model.Path ), model.Path ), new KVP( nameof( model.Id ), model.Id.ToString( CultureInfo.InvariantCulture ) ),
                 new KVP( nameof( model.Autorestart ), model.Autorestart.ToString( CultureInfo.InvariantCulture ) ),
-                new KVP( nameof( model.Priority ), model.Priority.ToString( CultureInfo.InvariantCulture ) ),
+                new KVP( nameof( model.Priority ), model.Priority.ToString() ),
                 new KVP( nameof( model.HideOnStart ), model.HideOnStart.ToString( CultureInfo.InvariantCulture ) )
             } );
 
