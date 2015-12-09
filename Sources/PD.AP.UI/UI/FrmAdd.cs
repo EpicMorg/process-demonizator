@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using PD.Api.DataTypes;
 using PD.UI.Shared;
-using ServiceStack.Text;
+
 
 namespace process_demonizator.UI {
     public sealed partial class FrmAdd : Form {
@@ -16,7 +16,6 @@ namespace process_demonizator.UI {
             get
             {
                 Console.WriteLine("Editor model requested:");
-                Console.WriteLine(_model.Dump());
                 return _model;
                 
             }
@@ -24,7 +23,6 @@ namespace process_demonizator.UI {
             {
                 _model = value;
                 Console.WriteLine( "Editor model updated:" );
-                Console.WriteLine(_model.Dump() );
                 if ( value != null ) UpdateBindings();
             }
         }
@@ -71,8 +69,6 @@ namespace process_demonizator.UI {
         }
 
         private void btnOK_Click( object sender, EventArgs e ) {
-            Console.WriteLine( "Returning model:" );
-            Console.WriteLine( _model.Dump() );
         }
 
     }

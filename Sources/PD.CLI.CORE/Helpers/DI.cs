@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using PD.Api;
 using PD.CLI.CORE.Api;
 using PD.CLI.CORE.Helpers;
@@ -14,19 +15,24 @@ namespace PD.CLI.CORE.Core {
 
         static Di() { }
 
-        public static void Initialize() {
+        public static void Initialize(string path = null) {
+            path = path ?? Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "emdemonizer" );
             _container = new Container { Options = { DefaultScopedLifestyle = new WebApiRequestLifestyle() } };
-            RegisterTypes();
+            RegisterTypes(path);
             _container.RegisterWebApiControllers(GlobalConfiguration.HttpConfiguration);
             _container.Verify();
             GlobalConfiguration.HttpConfiguration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(_container);
         }
 
-        private static void RegisterTypes() {
+        private static void RegisterTypes(string path) {
             //shared
+            //_container.Register<IDataStorageFactory, DataStorageFactory>(Lifestyle.Singleton);
+
+            _container.RegisterSingleton<IDataStorageFactory>(new DataStorageFactory( path ));
+
             _container.Register<IInternalDemonizedProcess, InternalDemonizedProcess>( Lifestyle.Transient );
             _container.Register<ISettingsFactory, SettingsFactory>( Lifestyle.Singleton );
-            _container.Register<IDataStorageFactory, HomeDataStorageFactory>( Lifestyle.Singleton );
+            
             _container.Register<IProcessManager, ProcessManager>( Lifestyle.Singleton );
             _container.Register<ILogManager, LogManager>( Lifestyle.Singleton );
             _container.Register<ISettingsManager, SettingsManager>( Lifestyle.Singleton );

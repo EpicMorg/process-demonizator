@@ -1,9 +1,0 @@
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\bin\Debug\IPAddressControlLib.dll
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\bin\Debug\IPAddressControlLib.pdb
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\bin\Debug\IPAddressControlLib.dll.CodeAnalysisLog.xml
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\bin\Debug\IPAddressControlLib.dll.lastcodeanalysissucceeded
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\obj\Debug\IPAddressControlLib.csprojResolveAssemblyReference.cache
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\obj\Debug\IPAddressControlLib.Properties.Resources.resources
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\obj\Debug\IPAddressControlLib.csproj.GenerateResource.Cache
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\obj\Debug\IPAddressControlLib.dll
-D:\WORK\Git\Github\process-demonizator\Sources\assets\IPAddressControlLib\obj\Debug\IPAddressControlLib.pdb

@@ -77,11 +77,4 @@ namespace PD.CLI.CORE.Helpers
         public IDataStorage<T> Get<T>() => new DataStorage<T>(_path);
     }
 
-    public class HomeDataStorageFactory : DataStorageFactory {
-
-        public HomeDataStorageFactory() : base( Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "emdemonizer" ) ) {
-        }
-
-    }
-
 }
