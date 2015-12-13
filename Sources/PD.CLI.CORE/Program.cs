@@ -34,8 +34,9 @@ namespace PD.CLI.CORE {
 
             var server = StartWobServer(ts.Token);
             var pm = StartProcesses();
-            Task killa = StartKilla();
-            Task.WhenAll( pm, server, killa ).Wait(ts.Token);
+            //Task killa = StartKilla();
+            Task.WhenAll( pm, server//, killa
+                ).Wait(ts.Token);
         }
 
         private async Task StartKilla() {
